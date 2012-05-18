@@ -114,7 +114,7 @@ test("object overrides an inherited property", function() {
     };
     var me = __;
     equals(person.greet(), "Hi", "how does a person greet?");
-    equals(me.greet(), "Moro", "how do I really greet?");
+    equals(me.greet(), "Moro", "how do I greet now?");
 });
 
 test("change a property in all heirs which have inherited an object", function() {
@@ -125,9 +125,9 @@ test("change a property in all heirs which have inherited an object", function()
     };
     var me = __;
     var myFriend = __;
-    equals(person.greet(), "Moro", "how does a person really greet?");
-    equals(me.greet(), "Moro", "how do I really greet?");
-    equals(myFriend.greet(), "Moro", "how does my friend really greet?");
+    equals(person.greet(), "Moro", "how does a person greet now?");
+    equals(me.greet(), "Moro", "how do I greet now?");
+    equals(myFriend.greet(), "Moro", "how does my friend greet now?");
 });
 
 test("object's prototype attribute", function() {
@@ -136,7 +136,17 @@ test("object's prototype attribute", function() {
     equals(__, person, "how to find out where does an object inherit from?");
 });
 
-// add a method enabling automatic conversion to string
+test("default conversion to string", function() {
+    var person = {name: 'Mikko'};
+    equals(__, '[object Object]', "how to obtain the string presentation of an object?");
+});
+
+test("define conversion to string for an object", function() {
+    var person = {name: 'Mikko'};
+    // __
+    equals(person.toString(), 'Person: Mikko', "how to implement a method to convert an object to string?");
+});
+
 // add a method enabling automatic conversion to a primitive value (other than string)
 // enumerate through properties in an object
 // add a method to an object and make it nonenumerable
