@@ -7,20 +7,20 @@ test("current time", function() {
 
 test("create date using UTC", function() {
     var date = __;
-    // year 2012, month 5, day 17, hours 8, minutes 54, seconds 40, milliseconds 123
-    var sameDateInMseconds = 1339923280123;
+    // year 2012, month May, day 17, hours 8, minutes 54, seconds 40, milliseconds 123
+    var sameDateInMseconds = 1337244880123;
     equals(date.valueOf(), sameDateInMseconds, '');
 });
 
 test("create date using local time", function() {
     var date = __;
-    var sameDateUsingUTC = Date.UTC(2012, 5, 17, 8, 54, 40, 123);
+    var sameDateUsingUTC = Date.UTC(2012, 4, 17, 8, 54, 40, 123);
     equals(date.valueOf(), sameDateUsingUTC, '');
 });
 
 test("create date using millisecond format", function() {
     var date = __;
-    var sameDateInMseconds = 1339923280123;
+    var sameDateInMseconds = 1337244880123;
     equals(date.valueOf(), sameDateInMseconds, '');
 });
 
