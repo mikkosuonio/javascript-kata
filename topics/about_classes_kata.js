@@ -29,10 +29,20 @@ test("convention for storing the prototype object of a class", function() {
     equals(__, Person.prototype, "how to find the prototype of an object created using new with constructor function?");
 });
 
+test("define conversion to string for a class", function() {
+    function Person(name) {
+        this.name = name;
+    };
+    // __
+    var me = new Person('Mikko');
+    var myFriend = new Person('Tommi');
+    equals(me.toString(), 'Person: Mikko', "how to implement a method to convert objects of a class to string?");
+    equals(myFriend.toString(), 'Person: Tommi', "how to implement a method to convert objects of a class to string?");
+});
+
 // redefine a method in all objects of a class
 // call an instance method in constructor
 // create a static / class method
-// add a method enabling automatic conversion to string
 // add a method allowing comparison of objects of the class
 // add a method enabling automatic conversion to a primitive value (other than string)
 
