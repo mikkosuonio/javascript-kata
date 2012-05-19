@@ -30,9 +30,29 @@ test("convert to string in ISO standard format", function() {
 });
 
 test("parse a date/time string: ISO format", function() {
-    var dateString = '2012-05-17T08:54:40.123Z';
-    var date = __;
-    equals(date.valueOf(), Date.UTC(2012, 4, 17, 8, 54, 40, 123), '');
+    function parseDate(dateString) {
+        // parse date and return it in millisecond format
+        return __;
+    };
+    equals(parseDate('2012-05-17T08:54:40.123Z'), Date.UTC(2012, 4, 17, 8, 54, 40, 123), '');
+    equals(parseDate('2012-05-17T08:54:40Z'), Date.UTC(2012, 4, 17, 8, 54, 40), '');
+    equals(parseDate('2012-05-17T11:54:40+03:00'), Date.UTC(2012, 4, 17, 8, 54, 40), '');
+
+    dateString = '2012-05-17T11:54:40';
+    var expectedDate;
+    if (Date.parse(dateString).valueOf() === 1337255680000)
+        // interpreted using UTC (Firefox, latest Ecmascript)
+        expectedDate = new Date(Date.UTC(2012, 4, 17, 11, 54, 40));
+    else
+        // interpreted using local time (Chrome, Ecmascript 5)
+        expectedDate = new Date(2012, 4, 17, 11, 54, 40);
+    equals(parseDate(dateString), expectedDate.valueOf(), '');
+});
+
+test("serialize a date to JSON", function() {
+    var date = new Date(Date.UTC(2012, 4, 17, 8, 54, 40, 123));
+    var serialized = __;
+    equals(serialized, '2012-05-17T08:54:40.123Z', "how to serialize a date to JSON?");
 });
 
 // parse a date/time string: ISO format
