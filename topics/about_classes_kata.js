@@ -10,6 +10,26 @@ test("create a class", function() {
     equals(friend.introduce(), "My name is Tommi", "what is my friend's name?");
 });
 
+test("call an instance method in constructor", function() {
+    function Person(name) {
+        // __
+    };
+    Person.prototype.setGreeting = function(name) {
+        this.greeting = 'My name is ' + name;
+    };
+    var me = new Person('Mikko');
+    equals(me.greeting, "My name is Mikko", "what is my name?");
+});
+
+test("create a class method: object construction using a factory method", function() {
+    function Person(name) {
+        this.greeting = 'My name is ' + name;
+    };
+    // __
+    var me = Person.createFinn('Mikko');
+    equals(me.greeting, "Minun nimeni on Mikko", "what is my name?");
+});
+
 test("add or override a method in all instances (even already instantiated) of a class", function() {
     // __
     var me = __;
@@ -40,8 +60,6 @@ test("define conversion to string for a class", function() {
     equals(myFriend.toString(), 'Person: Tommi', "how to implement a method to convert objects of a class to string?");
 });
 
-// call an instance method in constructor
-// create a static / class method
 // add a method allowing comparison of objects of the class:
 // - equals
 // - comparison of objects which have valueOf()
