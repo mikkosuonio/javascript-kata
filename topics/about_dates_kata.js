@@ -2,7 +2,8 @@
 module("About dates kata (topics/about_dates_kata.js)");
 
 test("current time", function() {
-    console.log('Current date and time is ' + __);
+    var date = __;
+    equals(date instanceof __, true, '');
 });
 
 test("create date using UTC", function() {
