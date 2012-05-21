@@ -152,4 +152,6 @@ test("define conversion to string for an object", function() {
 // add a method to an object and make it nonenumerable
 // wrap a method in an object providing a new implementation which uses the old ()
 // object has a private property
+// share a method between two objects / classes
+// inherit (statically) all properties from another object in addition to the prototype
 

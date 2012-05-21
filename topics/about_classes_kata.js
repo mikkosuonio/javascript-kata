@@ -40,10 +40,27 @@ test("define conversion to string for a class", function() {
     equals(myFriend.toString(), 'Person: Tommi', "how to implement a method to convert objects of a class to string?");
 });
 
+// objects of the derived class are instances of the base class
 // redefine a method in all objects of a class
 // call an instance method in constructor
 // create a static / class method
-// add a method allowing comparison of objects of the class
+// add a method allowing comparison of objects of the class:
+// - equals
+// - comparison of objects which have valueOf()
+// - compareTo
+// - helper for sort
+// - question: value types in javascript: is it possible to use them in === comparisons?
 // add a method enabling automatic conversion to a primitive value (other than string)
+// all instances of Function have a property 'prototype'
+// all instances of Function have a different prototype(?)
+// private state:
+// - a private instance variable accessible from selected methods
+// - a private instance variable initialized with a constructor parameter accessible from selected methods
+// - a private class variable accessible from selected methods
+// - a private instance variable accessible from selected methods and a public getter
+// constructor overloading
+// - overloaded constructor with argument type deduction
+// - overloaded constructor for the same argument type list
+// - factory method
 
 
