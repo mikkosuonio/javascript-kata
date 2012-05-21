@@ -10,7 +10,7 @@ test("create a class", function() {
     equals(friend.introduce(), "My name is Tommi", "what is my friend's name?");
 });
 
-test("add a method to all instances (even already instantiated) of a class", function() {
+test("add or override a method in all instances (even already instantiated) of a class", function() {
     // __
     var me = __;
     // __
@@ -40,8 +40,6 @@ test("define conversion to string for a class", function() {
     equals(myFriend.toString(), 'Person: Tommi', "how to implement a method to convert objects of a class to string?");
 });
 
-// objects of the derived class are instances of the base class
-// redefine a method in all objects of a class
 // call an instance method in constructor
 // create a static / class method
 // add a method allowing comparison of objects of the class:
@@ -51,6 +49,7 @@ test("define conversion to string for a class", function() {
 // - helper for sort
 // - question: value types in javascript: is it possible to use them in === comparisons?
 // add a method enabling automatic conversion to a primitive value (other than string)
+// objects of the derived class are instances of the base class
 // all instances of Function have a property 'prototype'
 // all instances of Function have a different prototype(?)
 // private state:
