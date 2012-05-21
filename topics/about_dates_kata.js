@@ -25,6 +25,11 @@ test("create date using millisecond format", function() {
     equals(date.valueOf(), sameDateInMseconds, '');
 });
 
+test("convert date to millisecond format", function() {
+    var date = new Date(Date.UTC(2012, 4, 17, 8, 54, 40, 123));
+    equals(__, 1337244880123, '');
+});
+
 test("convert to string in ISO standard format", function() {
     var date = new Date(Date.UTC(2012, 4, 17, 8, 54, 40, 123));
     equals(__, '2012-05-17T08:54:40.123Z', '');
@@ -50,20 +55,25 @@ test("parse a date/time string: ISO format", function() {
     equals(parseDate(dateString), expectedDate.valueOf(), '');
 });
 
+test("convert to human-readable string using UTC", function() {
+    var date = new Date(Date.UTC(2012, 4, 17, 8, 54, 40, 0));
+    var dateString = __;
+    console.log('About dates kata: convert to string in UTC: ' + dateString);
+    equals(Date.parse(dateString), date.valueOf(), '');
+});
+
 test("serialize a date to JSON", function() {
     var date = new Date(Date.UTC(2012, 4, 17, 8, 54, 40, 123));
     var serialized = __;
     equals(serialized, '2012-05-17T08:54:40.123Z', "how to serialize a date to JSON?");
 });
 
-// parse a date/time string: ISO format
-// parse a date/time string: javascript string format
-// parse a date/time string: javascript UTC string format
-// create date from string
-// convert to string using the local time zone
 // convert to string using UTC
+// convert to string using the local time zone
 // convert to string using local time zone and local date formatting conventions
-// serialize to JSON
+// parse a date/time string: javascript UTC string format
+// parse a date/time string: javascript string format
+// create date from string
 // convert the date portion to string
 // convert the time portion to string
 // get date and time values in local time
@@ -71,5 +81,6 @@ test("serialize a date to JSON", function() {
 // get date and time in millisecond format
 // set date and time values in local time
 // set date and time values in UTC
+// get the offset of the current timezone
 // question: is it possible to change the time zone used locally?
 
