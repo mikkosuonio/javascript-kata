@@ -7,16 +7,10 @@ test("define a function", function() {
     equals(definedFunction(), returnedValue, 'how to define a function?');
 });
 
-test("define a function", function() {
-    var returnedValue = 1;
-    // __
-    equals(definedFunction(), returnedValue, 'how to define a function?');
-});
-
 test("define a function with parameters", function() {
-    var value = 1;
     // __
-    equals(functionWithParameter(value), 2*value, 'how to define a function with a parameter?');
+    equals(functionWithParameter(1), 2*1, 'how to define a function with a parameter?');
+    equals(functionWithParameter(2), 2*2, 'how to define a function with a parameter?');
 });
 
 test("define a function with an optional parameter", function() {
@@ -39,7 +33,7 @@ test("pass a function as an argument", function() {
         return x*x;
     };
     var functionWithFunctionAsParameter = __;
-    equals(functionWithFunctionAsParameter(argumentFunction, 2), 4, 'how to define a function with a function as an argument?');		
+    equals(functionWithFunctionAsParameter(argumentFunction, 2), 4, 'how to define a function with a function as an parameter?');		
 });
 
 test("function object parameters are passed by reference", function() {
