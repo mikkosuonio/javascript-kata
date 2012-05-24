@@ -246,3 +246,9 @@ test("match position: the end of the string", function() {
     equals(containsPattern(""), false, 'No occurrences in an empty string');
 });
 
+// grouping: reusing the parenthesized expressions
+// multiline regular expressions
+// beginning and end of word
+
+
+
