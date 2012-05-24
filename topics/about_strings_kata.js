@@ -6,8 +6,8 @@ test("equality", function() {
     equals("apple" == "pie", __, 'are the strings equal?');
     equals("apple" === "apple", __, 'are the strings equal?');
     equals("apple" === "pie", __, 'are the strings equal?');
-    equals("apple" != "pie", __, 'are the strings equal?');
-    equals("apple" !== "pie", __, 'are the strings equal?');
+    equals("apple" != "pie", __, 'are the strings not equal?');
+    equals("apple" !== "pie", __, 'are the strings not equal?');
 });
 
 test("concatenate strings", function() {
@@ -82,12 +82,23 @@ test("replace a regular expression by a string built from the match", function()
     equals(__, "pie apple", 'how to reorder substrings?');
 });
 
+test("match to find an occurrence and matching subexpressions of a regular expression", function() {
+    var matchRegExp = function(str) {
+        return __;
+    };
+    deepEqual(matchRegExp("ab"), ['ab', 'ab'], 'Occurrence with subexpression once');
+    deepEqual(matchRegExp("abab"), ['abab', 'ab'], 'Occurrence with subexpression twice');
+    deepEqual(matchRegExp("abaabab"), ['ab', 'ab'], 'Only the first occurrence matches, with subexpression once');
+    deepEqual(matchRegExp("ba"), null, 'No occurrences');
+    deepEqual(matchRegExp(""), null, 'No occurrences in an empty string');
+});
+
 test("match to find all occurrences of a regular expression", function() {
     var matchRegExp = function(str) {
         return __;
     };
     deepEqual(matchRegExp("ab"), ['ab'], 'One occurrence');
-    deepEqual(matchRegExp("abab"), ['ab', 'ab'], 'Two occurrences');
+    deepEqual(matchRegExp("abab"), ['abab'], 'One longer occurrence');
     deepEqual(matchRegExp("abaabab"), ['ab', 'abab'], 'Two occurrences');
     deepEqual(matchRegExp("ba"), null, 'No occurrences');
     deepEqual(matchRegExp(""), null, 'No occurrences in an empty string');
