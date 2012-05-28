@@ -35,6 +35,20 @@ test("convert to string in ISO standard format", function() {
     equals(__, '2012-05-17T08:54:40.123Z', '');
 });
 
+test("convert to human-readable string using UTC", function() {
+    var date = new Date(Date.UTC(2012, 4, 17, 8, 54, 40, 0));
+    var dateString = __;
+    console.log('convert to human-readable string using UTC: ' + dateString);
+    equals(Date.parse(dateString), date.valueOf(), '');
+});
+
+test("convert to human-readable string using local time", function() {
+    var date = new Date(Date.UTC(2012, 4, 17, 8, 54, 40, 0));
+    var dateString = __;
+    console.log('convert to human-readable string using local time: ' + dateString);
+    equals(Date.parse(dateString), date.valueOf(), '');
+});
+
 test("parse a date/time string: ISO format", function() {
     function parseDate(dateString) {
         // parse date and return it in millisecond format
@@ -55,11 +69,16 @@ test("parse a date/time string: ISO format", function() {
     equals(parseDate(dateString), expectedDate.valueOf(), '');
 });
 
-test("convert to human-readable string using UTC", function() {
+test("parse a date/time string: javascript UTC string format", function() {
     var date = new Date(Date.UTC(2012, 4, 17, 8, 54, 40, 0));
-    var dateString = __;
-    console.log('About dates kata: convert to string in UTC: ' + dateString);
-    equals(Date.parse(dateString), date.valueOf(), '');
+    var dateString = date.toUTCString();
+    equals(__, date.valueOf(), '');
+});
+
+test("parse a date/time string: javascript string format", function() {
+    var date = new Date(Date.UTC(2012, 4, 17, 8, 54, 40, 0));
+    var dateString = date.toString();
+    equals(__, date.valueOf(), '');
 });
 
 test("serialize a date to JSON", function() {
@@ -68,11 +87,7 @@ test("serialize a date to JSON", function() {
     equals(serialized, '2012-05-17T08:54:40.123Z', "how to serialize a date to JSON?");
 });
 
-// convert to string using UTC
-// convert to string using the local time zone
 // convert to string using local time zone and local date formatting conventions
-// parse a date/time string: javascript UTC string format
-// parse a date/time string: javascript string format
 // create date from string
 // convert the date portion to string
 // convert the time portion to string
