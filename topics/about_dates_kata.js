@@ -25,6 +25,12 @@ test("create date using millisecond format", function() {
     equals(date.valueOf(), milliseconds, '');
 });
 
+test("create date from string: ISO format", function() {
+    var dateUsingUTC = Date.UTC(2012, 4, 17, 8, 54, 40, 123);
+    var sameDateAsString = '2012-05-17T08:54:40.123Z';
+    equals(__.valueOf(), dateUsingUTC.valueOf(), '');
+});
+
 test("convert date to millisecond format", function() {
     var date = new Date(Date.UTC(2012, 4, 17, 8, 54, 40, 123));
     equals(__, 1337244880123, '');
@@ -84,11 +90,10 @@ test("parse a date/time string: javascript string format", function() {
 test("serialize a date to JSON", function() {
     var date = new Date(Date.UTC(2012, 4, 17, 8, 54, 40, 123));
     var serialized = __;
-    equals(serialized, '2012-05-17T08:54:40.123Z', "how to serialize a date to JSON?");
+    equals(serialized, '"2012-05-17T08:54:40.123Z"', "how to serialize a date to JSON?");
 });
 
 // convert to string using local time zone and local date formatting conventions
-// create date from string
 // convert the date portion to string
 // convert the time portion to string
 // get date and time values in local time
