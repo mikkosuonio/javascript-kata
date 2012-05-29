@@ -43,12 +43,6 @@ test("augment a standard class with a new method", function() {
     equals(string.removeExtraWhiteSpace(), "My name is Mikko", "how to add a method to string class?");
 });
 
-test("convention for storing the prototype object of a class", function() {
-    function Person() {};
-    var me = new Person;
-    equals(__, Person.prototype, "how to find the prototype of an object created using new with constructor function?");
-});
-
 test("define conversion to string for a class", function() {
     function Person(name) {
         this.name = name;
@@ -58,6 +52,18 @@ test("define conversion to string for a class", function() {
     var myFriend = new Person('Tommi');
     equals(me.toString(), 'Person: Mikko', "how to implement a method to convert objects of a class to string?");
     equals(myFriend.toString(), 'Person: Tommi', "how to implement a method to convert objects of a class to string?");
+});
+
+test("convention for storing the constructor function", function() {
+    function Person() {};
+    var me = new Person;
+    equals(me.constructor, Person, "how to find the constructor function of an object created using new?");
+});
+
+test("convention for storing the prototype object of a class", function() {
+    function Person() {};
+    var me = new Person;
+    equals(__, Object.getPrototypeOf(me), "how to find the prototype of an object created using new with constructor function?");
 });
 
 // add a method allowing comparison of objects of the class:
