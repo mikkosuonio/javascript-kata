@@ -57,7 +57,7 @@ test("define conversion to string for a class", function() {
 test("convention for storing the constructor function", function() {
     function Person() {};
     var me = new Person;
-    equals(me.constructor, Person, "how to find the constructor function of an object created using new?");
+    equals(__, Person, "how to find the constructor function of an object created using new?");
 });
 
 test("convention for storing the prototype object of a class", function() {
@@ -66,8 +66,20 @@ test("convention for storing the prototype object of a class", function() {
     equals(__, Object.getPrototypeOf(me), "how to find the prototype of an object created using new with constructor function?");
 });
 
+test("add a method allowing comparison of objects of the class: equality", function() {
+    function Person(name) {
+        this.name = name;
+    };
+    // __
+    var me = new Person('Mikko');
+    var anotherMe = new Person('Mikko');
+    var friend = new Person('Tommi');
+    equals(me.equals(me), true, "am I equal to myself?");
+    equals(me.equals(anotherMe), true, "am I equal to another me?");
+    equals(!me.equals(friend), true, "am I not equal to my friend?");
+});
+
 // add a method allowing comparison of objects of the class:
-// - equals
 // - comparison of objects which have valueOf()
 // - compareTo
 // - helper for sort
@@ -84,6 +96,5 @@ test("convention for storing the prototype object of a class", function() {
 // constructor overloading
 // - overloaded constructor with argument type deduction
 // - overloaded constructor for the same argument type list
-// - factory method
 
 
