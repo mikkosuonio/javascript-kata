@@ -74,15 +74,35 @@ test("add a method allowing comparison of objects of the class: equality", funct
     var me = new Person('Mikko');
     var anotherMe = new Person('Mikko');
     var friend = new Person('Tommi');
+    var different = new String('Mikko');
+    function Animal(name) {
+        this.name = name;
+    };
+    var differentKind = new Animal('Fido');
     equals(me.equals(me), true, "am I equal to myself?");
     equals(me.equals(anotherMe), true, "am I equal to another me?");
     equals(!me.equals(friend), true, "am I not equal to my friend?");
+    equals(!me.equals(different), true, "am I not equal to an object of another class?");
+    equals(!me.equals(differentKind), true, "am I not equal to an object of another class (which has a name)?");
+});
+
+test("add a method allowing comparison of objects of the class: compareTo", function() {
+    function Person(name) {
+        this.name = name;
+    };
+    // __
+    var me = new Person('Mikko');
+    var friend = new Person('Tommi');
+    equals(me.compareTo(me) === 0, true, "am I equal to myself?");
+    equals(me.compareTo(friend) < 0, true, "do I come before my friend in the alphabetic order?");
+    equals(friend.compareTo(me) > 0, true, "does my friend come after me in the alphabetic order?");
+    
+    // __
+    deepEqual([friend, me].sort(Person.byName), [me, friend], 'how to sort us alphabetically?');
 });
 
 // add a method allowing comparison of objects of the class:
 // - comparison of objects which have valueOf()
-// - compareTo
-// - helper for sort
 // - question: value types in javascript: is it possible to use them in === comparisons?
 // add a method enabling automatic conversion to a primitive value (other than string)
 // objects of the derived class are instances of the base class
