@@ -123,3 +123,29 @@ test("extract the end of a string", function() {
     var dessert = "apple pie";
     equals(__, "pie", 'how to extract the end of a string?');
 });
+
+test("convert a primitive type to string", function() {
+    equals(__, "1.2", 'how to convert a number?');
+    equals(__, "true", 'how to convert a boolean?');
+    equals(__, "null", 'how to convert null?');
+    equals(__, "undefined", 'how to convert undefined?');
+});
+
+test("convert a primitive type to string: more examples", function() {
+    equals(String(-0), __, 'what does the string look like?');
+    equals(String(NaN), __, 'what does the string look like?');
+    equals(String(Infinity), __, 'what does the string look like?');
+    equals(String(-Infinity), __, 'what does the string look like?');
+});
+
+test("convert a number to string", function() {
+    equals(Number(4), "100", 'how to convert to binary?');
+    equals(Number(64), "100", 'how to convert to octal?');
+    equals(Number(256), "100", 'how to convert to hexadecimal?');
+    equals(Number(17*17), "100", 'how to convert to base 17?');
+});
+
+// convert number to string
+//   fixed, exponential, precision
+// parsing numbers to strings
+//   integers, floats, hexadecimals, other base
