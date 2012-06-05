@@ -31,8 +31,10 @@ test("create a class method: object construction using a factory method", functi
 });
 
 test("add or override a method in all instances (even already instantiated) of a class", function() {
-    // __
-    var me = __;
+    function Person(name) {
+        this.name = name;
+    };
+    var me = new Person('Mikko');
     // __
     equals(me.introduce(), "My name is Mikko", "what is my name?");
 });
@@ -84,6 +86,7 @@ test("add a method allowing comparison of objects of the class: equality", funct
     equals(!me.equals(friend), true, "am I not equal to my friend?");
     equals(!me.equals(different), true, "am I not equal to an object of another class?");
     equals(!me.equals(differentKind), true, "am I not equal to an object of another class (which has a name)?");
+    equals(!me.equals({}), true, "am I not equal to an empty object?");
 });
 
 test("add a method allowing comparison of objects of the class: compareTo", function() {
