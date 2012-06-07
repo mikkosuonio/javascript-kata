@@ -122,6 +122,19 @@ test("character classes: any ASCII digit", function() {
     equals(containsPattern(""), false, 'No occurrences in an empty string');
 });
 
+test("character classes: any character that is not an ASCII digit", function() {
+    var containsPattern = function(str) {
+        return (str.search(__) != -1);
+    };
+    equals(containsPattern("1"), false, 'No occurrences');
+    equals(containsPattern("2"), false, 'No occurrences');
+    equals(containsPattern("12"), false, 'No occurrences');
+    equals(containsPattern("a"), true, 'One occurrence');
+    equals(containsPattern("1a"), true, 'One occurrence');
+    equals(containsPattern(" "), true, 'One occurrence');
+    equals(containsPattern(""), false, 'No occurrences in an empty string');
+});
+
 test("repetition: match zero or one occurrence", function() {
     var containsPattern = function(str) {
         return (str.search(__) != -1);
@@ -197,6 +210,19 @@ test("repetition: match at least n but not more than m occurrences", function() 
     equals(containsPattern(" "), false, 'No occurrences');
 });
 
+test("concatenation", function() {
+    var containsPattern = function(str) {
+        return (str.search(__) != -1);
+    };
+    equals(containsPattern("a"), false, 'No occurrences');
+    equals(containsPattern("ab"), true, 'One occurrence');
+    equals(containsPattern("aab"), true, 'One occurrence!');
+    equals(containsPattern("ba"), false, 'No occurrences');
+    equals(containsPattern("b"), false, 'No occurrences');
+    equals(containsPattern(" "), false, 'No occurrences');
+    equals(containsPattern(""), false, 'No occurrences in an empty string');
+});
+
 test("alternation", function() {
     var containsPattern = function(str) {
         return (str.search(__) != -1);
@@ -226,7 +252,7 @@ test("grouping", function() {
 
 test("match position: the beginning of the string", function() {
     var containsPattern = function(str) {
-        return (str.search(/__/) != -1);
+        return (str.search(__) != -1);
     };
     equals(containsPattern("a"), true, 'One occurrence');
     equals(containsPattern("aa"), true, 'One occurrence');
@@ -237,7 +263,7 @@ test("match position: the beginning of the string", function() {
 
 test("match position: the end of the string", function() {
     var containsPattern = function(str) {
-        return (str.search(/__/) != -1);
+        return (str.search(__) != -1);
     };
     equals(containsPattern("b"), true, 'One occurrence');
     equals(containsPattern("bb"), true, 'One occurrence');
@@ -246,9 +272,10 @@ test("match position: the end of the string", function() {
     equals(containsPattern(""), false, 'No occurrences in an empty string');
 });
 
+// match function: show all matching substrings
 // grouping: reusing the parenthesized expressions
-// multiline regular expressions
-// beginning and end of word
-
-
+// match position: beginning and end of word
+// flags: case insensitive, global match, multiline mode
+// nongreedy repetition
+// lookahead assertion
 
