@@ -29,7 +29,7 @@ test("throw a standard exception", function() {
 test("throw a primitive type", function() {
     try {
         // __
-        }
+    }
     catch (e) {
         equals(e, 'it was my fault', 'how does the error look like?');        
     }
