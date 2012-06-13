@@ -147,11 +147,71 @@ test("define conversion to string for an object", function() {
     equals(person.toString(), 'Person: Mikko', "how to implement a method to convert an object to string?");
 });
 
+test("enumerate properties of an object", function() {
+    var person = {
+        name: 'Mikko',
+        age: 38
+    };
+    var keys = [];
+    // __
+    keys.sort();
+    deepEqual(keys, ['age', 'name'], "how to obtain the property names?");
+});
+
+test("enumerate properties of an object: functions as properties", function() {
+    var person = {
+        sayHi: function() {
+            return "Hi";
+        }
+    };
+    var keys = [];
+    // __
+    keys.sort();
+    deepEqual(keys, ['sayHi'], "how to obtain the property names?");
+});
+
+test("enumerate properties of an object: inherited properties", function() {
+    var person = {
+        age: 38
+    };
+    var me = Object.create(person);
+    me.name = 'Mikko';
+    var keys = [];
+    // __
+    keys.sort();
+    deepEqual(keys, ['age', 'name'], "how to obtain the property names?");
+});
+
+test("enumerate properties of an object: detect inherited properties", function() {
+    var person = {
+        age: 38
+    };
+    var me = Object.create(person);
+    me.name = 'Mikko';
+    var keys = [];
+    // __
+    keys.sort();
+    deepEqual(keys, ['name'], "how to obtain object's own properties?");
+});
+
+test("enumerate properties of an object: making a property nonenumerable", function() {
+    var person = {
+        sayHi: function() {
+            return "Hi";
+        }
+    };
+    // __
+    var keys = [];
+    for (var key in person)
+        keys.push(key);
+    deepEqual(keys, [], "how to make a property nonenumerable?");
+});
+
+// get all properties (even nonenumerable) of an object
 // add a method enabling automatic conversion to a primitive value (other than string)
-// enumerate through properties in an object
-// add a method to an object and make it nonenumerable
 // wrap a method in an object providing a new implementation which uses the old ()
 // object has private data which can be used by dedicated methods only
 // share a method between two objects / classes
-// inherit (statically) all properties from another object in addition to the prototype
+// inherit (statically) all properties from two objects (the prototype object and another object)
+// inherit (dynamically) all properties from two objects (the prototype object and another object)
 
