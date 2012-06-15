@@ -65,6 +65,7 @@ test("search for an occurrence of a regular expression", function() {
 test("replace a substring", function() {
     var dessert = "apple pie";
     equals(__, "orange pie", 'how to replace a substring?');
+    equals(dessert, "apple pie", 'the original string does not change');
 });
 
 test("replace a regular expression", function() {
@@ -117,6 +118,7 @@ test("split a string on a separator expressed as a regular expression", function
 test("slice a substring", function() {
     var dessert = "apple pie";
     equals(__, "pi", 'how to extract a substring?');
+    equals(dessert, "apple pie", 'the original string does not change');
 });
 
 test("extract the end of a string", function() {
