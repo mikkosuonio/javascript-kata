@@ -207,7 +207,19 @@ test("enumerate properties of an object: making a property nonenumerable", funct
     deepEqual(keys, [], "how to make a property nonenumerable?");
 });
 
-// get all properties (even nonenumerable) of an object
+test("get all properties (even nonenumerable) of an object", function() {
+    var parent = {
+        inherited: true
+    };
+    var object = Object.create(parent, {
+        ownProperty: {value: true},
+        nonEnumerableProperty: {value: true, enumerable: false}
+    });
+    var keys = __;
+    keys.sort();
+    deepEqual(keys, ['nonEnumerableProperty', 'ownProperty'], "how to get a list of own property names?");
+});
+
 // add a method enabling automatic conversion to a primitive value (other than string)
 // wrap a method in an object providing a new implementation which uses the old ()
 // object has private data which can be used by dedicated methods only
