@@ -45,6 +45,53 @@ test("function object parameters are passed by reference", function() {
     equals(object.property, __, 'has the object been modified?');
 });
 
+test("function with variable number of arguments", function() {
+    var product = function(/* ... */) {
+        var result = 1;
+        for (var i = 0; i < __; i++)
+            result *= __;
+        return result;
+    }
+    equals(product(1), 1, 'how to define a function with varying number of parameters?');
+    equals(product(1, 2), 2, 'how to define a function with varying number of parameters?');
+    equals(product(1, 2, 3), 6, 'how to define a function with varying number of parameters?');
+});
+
+test("arguments object: use as an array", function() {
+    var joinTheParameters = function(/* ... */) {
+        return __;
+    };
+    equals(joinTheParameters(1), "1", 'how to call an array method on arguments?');
+    equals(joinTheParameters(1, 2), "1,2", 'how to call an array method on arguments?');
+});
+
+test("invocation: call a function as a method of an object", function() {
+    var object = {property: false};
+    var functionChangingTheProperty = function() {
+        this.property = true;
+    };
+    // __
+    equals(object.property, true, 'how to call the function as a method?');
+});
+
+test("invocation: apply a function with varying/unknown number of parameters", function() {
+    var object = {result: 0};
+    var function1 = function(x) {
+        return this.result = x;
+    };
+    var function2 = function(x, y) {
+        return this.result = x*y;
+    };
+    var changeTheObject = function(f /* ... */) {
+        var argumentsForF = [].slice.call(arguments, 1);
+        this.result = __;
+    };
+    changeTheObject.call(object, function1, 1);
+    equals(object.result, 1, 'result for a function with one parameter');
+    changeTheObject.call(object, function2, 2, 3);
+    equals(object.result, 6, 'result for a function with two parameters');
+});
+
 test("functions are hoisted to the top of the enclosing function / script", function() {
     function callFunctionNotYetDeclared() {
         return callThis();
