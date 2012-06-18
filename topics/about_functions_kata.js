@@ -148,10 +148,14 @@ test("functions as a temporary namespace", function () {
     equals(typeof(temporary), "undefined", 'how to avoid temporary variables polluting the global namespace?');
 });
 
-// call a function as a method of an object
-// function with varying number of arguments
-// apply a function as a method of an object: any number of parameters
+// closures
+// - function evaluated in the same (lexical) scope as where it was defined
+// - function evaluated in a different scope than where it was defined
+// - the initial value of a variable in the lexical scope of a function passed as a parameter to an enclosing function
+// - accessing this or arguments of an outer function
 // function parameters of basic types are essentially passed by value
 // function parameters of basic types are converted to wrapper objects
-// partial application / currying (see The bind() method in Functions: Function properties, ...)
+// partial application / currying
+// - see The bind() method in Functions: Function properties, ...
+// - Alternative implementation: see http://javascriptweblog.wordpress.com/2010/04/05/curry-cooking-up-tastier-functions/
 

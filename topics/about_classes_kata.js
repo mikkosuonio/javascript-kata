@@ -104,13 +104,19 @@ test("add a method allowing comparison of objects of the class: compareTo", func
     deepEqual([friend, me].sort(Person.byName), [me, friend], 'how to sort us alphabetically?');
 });
 
+// objects of the derived class are instances of the base class
+// subclasses
+// - make a derived class which whose instances inherit the prototype of the base class
+// - constructor and method chaining
+// - composition instead of subclassing
+// - abstract classes
+// all instances of Function have a property 'prototype'
+// is Function the prototype (attribute) of all functions?
+// do all instances of Function have a different prototype (attribute) or a different value of the prototype property?
 // add a method allowing comparison of objects of the class:
 // - comparison of objects which have valueOf()
 // - question: value types in javascript: is it possible to use them in === comparisons?
 // add a method enabling automatic conversion to a primitive value (other than string)
-// objects of the derived class are instances of the base class
-// all instances of Function have a property 'prototype'
-// all instances of Function have a different prototype(?)
 // private state:
 // - a private instance variable accessible from selected methods
 // - a private instance variable initialized with a constructor parameter accessible from selected methods
