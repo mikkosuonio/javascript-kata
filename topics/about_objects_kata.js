@@ -112,7 +112,8 @@ test("object overrides an inherited property", function() {
             return "Hi";
         }
     };
-    var me = __;
+    var me = Object.create(person);
+    // __
     equals(person.greet(), "Hi", "how does a person greet?");
     equals(me.greet(), "Moro", "how do I greet now?");
 });
@@ -123,8 +124,9 @@ test("change a property in all heirs which have inherited an object", function()
             return "Hi";
         }
     };
-    var me = __;
-    var myFriend = __;
+    var me = Object.create(person);
+    var myFriend = Object.create(person);
+    // __
     equals(person.greet(), "Moro", "how does a person greet now?");
     equals(me.greet(), "Moro", "how do I greet now?");
     equals(myFriend.greet(), "Moro", "how does my friend greet now?");

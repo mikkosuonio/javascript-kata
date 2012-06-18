@@ -131,5 +131,3 @@ test("sort an array of numbers", function() {
     deepEqual(sorted, [1, 5, 10], 'how to sort the array?');
 });
 
-// does Array.slice allow modifying the original array?
-
