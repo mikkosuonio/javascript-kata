@@ -43,6 +43,7 @@ test("slice a portion of an array", function() {
     var array = ['a', 'b', 'c'];
     var portion = __;
     deepEqual(portion, ['b', 'c'], 'how to slice a portion of an array?');
+    deepEqual(array, ['a', 'b', 'c'], 'the original array does not change');
 });
 
 test("slice a portion at the end of an array", function() {
