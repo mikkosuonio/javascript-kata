@@ -145,6 +145,8 @@ test("add a method allowing comparison of objects of the class: compareTo", func
     deepEqual([friend, me].sort(Person.byName), [me, friend], 'how to sort us alphabetically?');
 });
 
+// allow extending the work done at construction
+// - call a hook method in constructor assuming someone has created that hook method to the prototype
 // subclasses
 // - abstract classes
 // all instances of Function have a property 'prototype'

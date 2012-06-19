@@ -239,6 +239,8 @@ test("get all properties (even nonenumerable) of an object", function() {
     deepEqual(keys, ['nonEnumerableProperty', 'ownProperty'], "how to get a list of own property names?");
 });
 
+// extend an object (or a prototype) by calling a function
+// - the function modifies the object using 'this' pointer
 // add a method enabling automatic conversion to a primitive value (other than string)
 // wrap a method in an object providing a new implementation which uses the old ()
 // object has private data which can be used by dedicated methods only
