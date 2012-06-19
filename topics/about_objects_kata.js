@@ -138,6 +138,23 @@ test("object's prototype attribute", function() {
     equals(__, person, "how to find out where does an object inherit from?");
 });
 
+test("composition instead of inheritance", function() {
+    var a = {
+        property: false,
+        method: function() {
+            this.property = true;
+        }
+    };
+    var b = {
+        base: a,
+        method: function() {
+            this.base.method.call(this.base);
+        }
+    };
+    b.method();
+    equals(b.base.property, true, "has the property changed?")
+});
+
 test("default conversion to string", function() {
     var person = {name: 'Mikko'};
     equals(__, '[object Object]', "how to obtain the string presentation of an object?");

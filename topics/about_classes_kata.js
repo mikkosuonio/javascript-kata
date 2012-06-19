@@ -68,6 +68,47 @@ test("convention for storing the prototype object of a class", function() {
     equals(__, Object.getPrototypeOf(me), "how to find the prototype of an object created using new with constructor function?");
 });
 
+test("subclasses", function() {
+    function Base() {};
+    function Derived() {};
+    Derived.prototype = Object.create(Base.prototype);
+    Derived.prototype.constructor = Derived;
+    var d = new Derived();
+    equals(d instanceof Base, true, "is it an instance of Base?");
+});
+
+test("subclasses: constructor chaining", function() {
+    function Base() {
+        this.property = true;
+    };
+    function Derived() {
+        Base.call(this);
+    };
+    Derived.prototype = Object.create(Base.prototype);
+    Derived.prototype.constructor = Derived;
+    var d = new Derived();
+    equals(d.property, true, "is the property initialized?")
+});
+
+test("subclasses: use composition instead", function() {
+    function Base() {
+        this.property = false;
+    };
+    Base.prototype.method = function() {
+        this.property = true;
+    };
+    function Derived(base) {
+        this.base = base;
+    };
+    Derived.prototype.method = function() {
+        // __
+    }
+    var b = new Base();
+    var d = new Derived(b);
+    d.method();
+    equals(d.base.property, true, "is the property initialized?")
+});
+
 test("add a method allowing comparison of objects of the class: equality", function() {
     function Person(name) {
         this.name = name;
@@ -104,11 +145,7 @@ test("add a method allowing comparison of objects of the class: compareTo", func
     deepEqual([friend, me].sort(Person.byName), [me, friend], 'how to sort us alphabetically?');
 });
 
-// objects of the derived class are instances of the base class
 // subclasses
-// - make a derived class which whose instances inherit the prototype of the base class
-// - constructor and method chaining
-// - composition instead of subclassing
 // - abstract classes
 // all instances of Function have a property 'prototype'
 // is Function the prototype (attribute) of all functions?
