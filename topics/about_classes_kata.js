@@ -80,6 +80,7 @@ test("subclasses", function() {
     // __
     var d = new Derived();
     equals(d instanceof Base, true, "is it an instance of Base?");
+    equals(d.constructor, Derived, "is the constructor still clear?");
 });
 
 test("subclasses: constructor chaining", function() {
