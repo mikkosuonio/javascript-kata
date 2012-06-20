@@ -77,8 +77,7 @@ test("convention for storing the prototype object of a class", function() {
 test("subclasses", function() {
     function Base() {};
     function Derived() {};
-    Derived.prototype = Object.create(Base.prototype);
-    Derived.prototype.constructor = Derived;
+    // __
     var d = new Derived();
     equals(d instanceof Base, true, "is it an instance of Base?");
 });
@@ -88,7 +87,7 @@ test("subclasses: constructor chaining", function() {
         this.property = true;
     };
     function Derived() {
-        Base.call(this);
+        // __
     };
     Derived.prototype = Object.create(Base.prototype);
     Derived.prototype.constructor = Derived;
@@ -112,7 +111,7 @@ test("subclasses: use composition instead", function() {
     var b = new Base();
     var d = new Derived(b);
     d.method();
-    equals(d.base.property, true, "is the property initialized?")
+    equals(d.base.property, true, "is the property changed?")
 });
 
 test("add a method allowing comparison of objects of the class: equality", function() {

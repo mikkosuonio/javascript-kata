@@ -148,7 +148,7 @@ test("composition instead of inheritance", function() {
     var b = {
         base: a,
         method: function() {
-            this.base.method.call(this.base);
+            // __
         }
     };
     b.method();
