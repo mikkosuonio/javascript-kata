@@ -3,9 +3,15 @@ module("Classes kata (topics/about_classes_kata.js)");
 
 test("create a class", function() {
     // __
+    var person = __;
+    equals(person instanceof Person, true, "am I a Person?");
+    equals(person.name, 'Mikko', "what is my name?");
+});
+
+test("create a class with a method", function() {
+    // __
     var me = __;
     var friend = __;
-    equals(__, true, "am I a Person?");
     equals(me.introduce(), "My name is Mikko", "what is my name?");
     equals(friend.introduce(), "My name is Tommi", "what is my friend's name?");
 });
