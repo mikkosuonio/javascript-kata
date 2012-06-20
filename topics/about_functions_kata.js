@@ -77,10 +77,10 @@ test("invocation: call a function as a method of an object", function() {
 test("invocation: apply a function with varying/unknown number of parameters", function() {
     var object = {result: 0};
     var function1 = function(x) {
-        return this.result = x;
+        return x;
     };
     var function2 = function(x, y) {
-        return this.result = x*y;
+        return x*y;
     };
     var changeTheObject = function(f /* ... */) {
         var argumentsForF = [].slice.call(arguments, 1);
