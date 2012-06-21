@@ -143,14 +143,69 @@ test("function expression stored in a variable is not defined before initializat
     };
 });
 
+test("closure: function evaluated in the same (lexical) scope as where it was defined", function() {
+    var i = 1;
+    function getValue() {
+        var i = 2;
+        function f() {return i;}
+        return f();
+    };
+    equals(getValue(), __, 'what value does the function evaluate to?');
+    equals(i, __, 'what is the value of the variable?');
+});
+
+test("closure: function evaluated in a different scope than where it was defined", function() {
+    var i = 1;
+    function getFunction() {
+        var i = 2;
+        function f() {return i;}
+        return f;
+    };
+    var f = getFunction();
+    var value = f();
+    equals(value, __, 'what value does the function evaluate to?');
+    equals(i, __, 'what is the value of the variable?');
+});
+
+test("closure: the scope chain associated with the closure is live", function() {
+    var i = 1;
+    function f1() {return i;}
+    i = 2;
+    function f2() {return i;}
+    equals(f1(), __, 'what is the return value of the function?');
+    equals(f2(), __, 'what is the return value of the function?');
+});
+
+test("closure: ... changing to the next level in the scope chain does not help", function() {
+    var i = 1;
+    function createFunction() {
+        return function() {return i;}
+    };
+    var f1 = createFunction(i);
+    i = 2;
+    var f2 = createFunction(i);
+    equals(f1(), __, 'what is the return value of the function?');
+    equals(f2(), __, 'what is the return value of the function?');
+});
+
+test("closure: ... but we can make a static copy by passing it as an argument of a function", function() {
+    var i = 1;
+    function createFunctionWithStaticCopyOf(i) {
+        return function() {return i;}
+    };
+    var f1 = createFunctionWithStaticCopyOf(i);
+    i = 2;
+    var f2 = createFunctionWithStaticCopyOf(i);
+    equals(f1(), __, 'what is the return value of the function?');
+    equals(f2(), __, 'what is the return value of the function?');
+});
+
 var temporary = 1;
 test("functions as a temporary namespace", function () {
     equals(typeof(temporary), "undefined", 'how to avoid temporary variables polluting the global namespace?');
 });
 
 // closures
-// - function evaluated in the same (lexical) scope as where it was defined
-// - function evaluated in a different scope than where it was defined
 // - the initial value of a variable in the lexical scope of a function passed as a parameter to an enclosing function
 // - accessing this or arguments of an outer function
 // function parameters of basic types are essentially passed by value
