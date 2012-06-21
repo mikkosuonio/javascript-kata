@@ -227,7 +227,7 @@ test("enumerate properties of an object: making a property nonenumerable", funct
     deepEqual(keys, [], "how to make a property nonenumerable?");
 });
 
-test("get all properties (even nonenumerable) of an object", function() {
+test("get own properties (even nonenumerable) of an object", function() {
     var parent = {
         inherited: true
     };
