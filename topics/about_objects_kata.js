@@ -104,6 +104,7 @@ test("object inherits a property from another object", function() {
     };
     var me = __;
     equals(me.greet(), "Hi", "how do I greet?");
+    ok(me !== person, "we are not the same");
 });
 
 test("object overrides an inherited property", function() {
