@@ -121,13 +121,13 @@ test("reduce an array starting from an initial value for the result", function()
 
 test("sort an array of strings", function() {
     var array = ["c", "a", "b"];
-    var sorted = __;
-    deepEqual(sorted, ["a", "b", "c"], 'how to sort the array?');
+    // __
+    deepEqual(array, ["a", "b", "c"], 'how to sort the array?');
 });
 
 test("sort an array of numbers", function() {
     var array = [10, 5, 1];
-    var sorted = __;
-    deepEqual(sorted, [1, 5, 10], 'how to sort the array?');
+    // __
+    deepEqual(array, [1, 5, 10], 'how to sort the array?');
 });
 
