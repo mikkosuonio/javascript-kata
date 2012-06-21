@@ -96,7 +96,7 @@ test("redefine a method in an object", function() {
     equals(person.greet(), "Moro", 'what should the new method be?');
 });
 
-test("object inherits a property from another object", function() {
+test("object inherits a method from another object", function() {
     var person = {
         greet: function() {
             return "Hi";
@@ -107,7 +107,7 @@ test("object inherits a property from another object", function() {
     ok(me !== person, "we are not the same");
 });
 
-test("object overrides an inherited property", function() {
+test("object overrides an inherited method", function() {
     var person = {
         greet: function() {
             return "Hi";
@@ -119,7 +119,7 @@ test("object overrides an inherited property", function() {
     equals(me.greet(), "Moro", "how do I greet now?");
 });
 
-test("change a property in all heirs which have inherited an object", function() {
+test("change a method in all heirs which have inherited an object", function() {
     var person = {
         greet: function() {
             return "Hi";
