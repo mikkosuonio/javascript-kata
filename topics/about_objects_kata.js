@@ -211,7 +211,7 @@ test("enumerate properties of an object: detect inherited properties", function(
     var keys = [];
     // __
     keys.sort();
-    deepEqual(keys, ['name'], "how to obtain object's own properties?");
+    deepEqual(keys, ['inherited:age', 'name'], "how to separate own and inherited properties?");
 });
 
 test("enumerate properties of an object: making a property nonenumerable", function() {
