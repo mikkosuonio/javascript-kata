@@ -181,9 +181,9 @@ test("closure: ... changing to the next level in the scope chain does not help",
     function createFunction() {
         return function() {return i;}
     };
-    var f1 = createFunction(i);
+    var f1 = createFunction();
     i = 2;
-    var f2 = createFunction(i);
+    var f2 = createFunction();
     equals(f1(), __, 'what is the return value of the function?');
     equals(f2(), __, 'what is the return value of the function?');
 });
