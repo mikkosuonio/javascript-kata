@@ -96,8 +96,8 @@ test("serialize a date to JSON", function() {
 test("get timezone offset", function() {
     var date = new Date(Date.UTC(2012, 0, 1, 9, 10, 11));
     var dateWithDaylightSavingTimeInEffect = new Date(Date.UTC(2012, 5, 25, 9, 52, 25));
-    equals(date.getTimezoneOffset(), -120, 'what is the difference between UTC time and your local time in minutes');
-    equals(dateWithDaylightSavingTimeInEffect.getTimezoneOffset(), -180, 'what is the difference between UTC time and your local time when daylight saving time is in effect');
+    equals(date.getTimezoneOffset(), __, 'what is the difference between UTC time and your local time in minutes');
+    equals(dateWithDaylightSavingTimeInEffect.getTimezoneOffset(), __, 'what is the difference between UTC time and your local time when daylight saving time is in effect');
 });
 
 // convert to string using local time zone and local date formatting conventions
