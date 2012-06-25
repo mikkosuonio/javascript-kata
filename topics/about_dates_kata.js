@@ -93,6 +93,13 @@ test("serialize a date to JSON", function() {
     equals(serialized, '"2012-05-17T08:54:40.123Z"', "how to serialize a date to JSON?");
 });
 
+test("get timezone offset", function() {
+    var date = new Date(Date.UTC(2012, 0, 1, 9, 10, 11));
+    var dateWithDaylightSavingTimeInEffect = new Date(Date.UTC(2012, 5, 25, 9, 52, 25));
+    equals(date.getTimezoneOffset(), -120, 'what is the difference between UTC time and your local time in minutes');
+    equals(dateWithDaylightSavingTimeInEffect.getTimezoneOffset(), -180, 'what is the difference between UTC time and your local time when daylight saving time is in effect');
+});
+
 // convert to string using local time zone and local date formatting conventions
 // convert the date portion to string
 // convert the time portion to string
@@ -101,6 +108,4 @@ test("serialize a date to JSON", function() {
 // get date and time in millisecond format
 // set date and time values in local time
 // set date and time values in UTC
-// get the offset of the current timezone
-// question: is it possible to change the time zone used locally?
 
