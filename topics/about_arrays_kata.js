@@ -98,6 +98,7 @@ test("check if an array contains an item satisfying a predicate", function() {
 test("for each element of an array", function() {
     var array = [1, 2, 3];
     var sum = 0;
+    // __
     equals(sum, 6, 'how to calculate something for each element of the array?');
 });
 
