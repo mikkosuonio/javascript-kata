@@ -132,6 +132,9 @@ test("sort an array of numbers", function() {
     deepEqual(array, [1, 5, 10], 'how to sort the array?');
 });
 
+// parameters (array[i],i,array) of predicates: every, filter, some
+// parameters (array[i],i,array) of functions for: forEach, map
+// array-like objects
 // push an item to the end of an array
 // pop an item from the end of an array
 // insert an item at the beginning of an array
