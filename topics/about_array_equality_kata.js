@@ -1,7 +1,5 @@
 
-module("About Array Equality (topics/about_arrays_equality.js)");
-
-// kata
+module("About Array Equality (topics/about_array_equality_kata.js)");
 
 function arraysAreEqual(array1, array2) {
 }
