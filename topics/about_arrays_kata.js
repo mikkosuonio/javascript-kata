@@ -132,3 +132,11 @@ test("sort an array of numbers", function() {
     deepEqual(array, [1, 5, 10], 'how to sort the array?');
 });
 
+// push an item to the end of an array
+// pop an item from the end of an array
+// insert an item at the beginning of an array
+// shift an item off the beginning of an array
+// join array elements to form a string
+// - default separator
+// - given separator
+
