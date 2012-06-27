@@ -233,8 +233,8 @@ test("alternation", function() {
     };
     equals(containsPattern("a"), true, 'One occurrence');
     equals(containsPattern("b"), true, 'One occurrence');
-    equals(containsPattern("ab"), true, 'One occurrence!');
-    equals(containsPattern("ba"), true, 'One occurrence!');
+    equals(containsPattern("ab"), true, 'Two occurrences!');
+    equals(containsPattern("ba"), true, 'Two occurrences!');
     equals(containsPattern("ac"), true, 'One occurrence surrounded by other characters');
     equals(containsPattern("c"), false, 'No occurrences');
     equals(containsPattern(" "), false, 'No occurrences');
