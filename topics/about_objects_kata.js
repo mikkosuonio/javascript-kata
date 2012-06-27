@@ -96,6 +96,16 @@ test("redefine a method in an object", function() {
     equals(person.greet(), "Moro", 'what should the new method be?');
 });
 
+test("wrap an existing method with a new method which calls the old", function() {
+    var person = {
+        sayHi: function() {
+            return 'Hi';
+        }
+    };
+    person.sayHi = __;
+    equals(person.sayHi(), "Hi, and hi again", 'what should the sayHi method be?');
+});
+
 test("object inherits a method from another object", function() {
     var person = {
         greet: function() {
@@ -131,6 +141,18 @@ test("change a method in all heirs which have inherited an object", function() {
     equals(person.greet(), "Moro", "how does a person greet now?");
     equals(me.greet(), "Moro", "how do I greet now?");
     equals(myFriend.greet(), "Moro", "how does my friend greet now?");
+});
+
+test("object overrides an inherited method and calls the overridden method", function() {
+    var person = {
+        greet: function() {
+            return "Hi";
+        }
+    };
+    var me = Object.create(person);
+    me.greet = __;
+    equals(person.greet(), "Hi", "how does a person greet?");
+    equals(me.greet(), "Moro, in other words, Hi", "how do I greet now?");
 });
 
 test("object's prototype attribute", function() {
