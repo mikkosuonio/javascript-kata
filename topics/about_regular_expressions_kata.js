@@ -177,10 +177,10 @@ test("repetition: match exactly n occurrences", function() {
     };
     equals(containsPattern("a"), false, 'One occurrence');
     equals(containsPattern("aa"), true, 'One occurrence');
-    equals(containsPattern("aaa"), true, 'One (or two?) occurrences');
-    equals(containsPattern("ab"), false, 'One occurrence surrounded by other characters');
-    equals(containsPattern(""), false, 'No occurrences in an empty string');
+    equals(containsPattern("aaa"), true, 'One occurrence');
+    equals(containsPattern("aab"), false, 'One occurrence surrounded by other characters');
     equals(containsPattern(" "), false, 'No occurrences');
+    equals(containsPattern(""), false, 'No occurrences in an empty string');
 });
 
 test("repetition: match n or more occurrences", function() {
@@ -190,10 +190,11 @@ test("repetition: match n or more occurrences", function() {
     equals(containsPattern("a"), false, 'No occurrences');
     equals(containsPattern("aa"), true, 'One occurrence');
     equals(containsPattern("aaa"), true, 'One occurrence');
-    equals(containsPattern("ab"), false, 'One occurrence surrounded by other characters');
+    equals(containsPattern("aab"), false, 'One occurrence surrounded by other characters');
+    equals(containsPattern("ab"), false, 'No occurrences');
     equals(containsPattern("b"), false, 'No occurrences');
-    equals(containsPattern(""), false, 'No occurrences in an empty string');
     equals(containsPattern(" "), false, 'No occurrences');
+    equals(containsPattern(""), false, 'No occurrences in an empty string');
 });
 
 test("repetition: match at least n but not more than m occurrences", function() {
@@ -206,8 +207,8 @@ test("repetition: match at least n but not more than m occurrences", function() 
     equals(containsPattern("aaaa"), true, 'Two occurrences!');
     equals(containsPattern("aab"), true, 'One occurrence surrounded by other characters');
     equals(containsPattern("bb"), false, 'No occurrences');
-    equals(containsPattern(""), false, 'No occurrences in an empty string');
     equals(containsPattern(" "), false, 'No occurrences');
+    equals(containsPattern(""), false, 'No occurrences in an empty string');
 });
 
 test("concatenation", function() {
