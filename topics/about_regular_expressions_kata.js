@@ -147,7 +147,7 @@ test("repetition: match zero or one occurrence", function() {
     equals(containsPattern(" "), true, 'One occurrence!');
 });
 
-test("repetition: match one or more occurrence", function() {
+test("repetition: match one or more occurrences", function() {
     var containsPattern = function(str) {
         return (str.search(__) != -1);
     };
@@ -159,7 +159,7 @@ test("repetition: match one or more occurrence", function() {
     equals(containsPattern(" "), false, 'No occurrences');
 });
 
-test("repetition: match zero or more occurrence", function() {
+test("repetition: match zero or more occurrences", function() {
     var containsPattern = function(str) {
         return (str.search(__) != -1);
     };
