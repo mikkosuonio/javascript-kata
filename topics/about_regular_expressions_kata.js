@@ -245,13 +245,14 @@ test("grouping", function() {
     var containsPattern = function(str) {
         return (str.search(__) != -1);
     };
-    equals(containsPattern(""), false, 'No occurrences');
+    equals(containsPattern("a"), false, 'No occurrences');
     equals(containsPattern("ab"), true, 'One occurrence');
-    equals(containsPattern("abab"), true, 'One (or two?) occurrence');
+    equals(containsPattern("aba"), true, 'One occurrence');
+    equals(containsPattern("abab"), true, 'One occurrence');
     equals(containsPattern("ababab"), true, 'One occurrence');
-    equals(containsPattern("aba"), true, 'One occurrence!');
     equals(containsPattern("ba"), false, 'No occurrences');
     equals(containsPattern(" "), false, 'No occurrences');
+    equals(containsPattern(""), false, 'No occurrences');
 });
 
 test("match position: the beginning of the string", function() {
