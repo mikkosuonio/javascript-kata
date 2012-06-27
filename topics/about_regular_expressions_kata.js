@@ -206,7 +206,7 @@ test("repetition: match at least n but not more than m occurrences", function() 
     equals(containsPattern("a"), false, 'No occurrences');
     equals(containsPattern("aa"), true, 'One occurrence');
     equals(containsPattern("aaa"), true, 'One occurrence');
-    equals(containsPattern("aaaa"), true, 'Two occurrences!');
+    equals(containsPattern("aaaa"), true, 'One occurrence!');
     equals(containsPattern("aab"), true, 'One occurrence surrounded by other characters');
     equals(containsPattern("ab"), false, 'No occurrences');
     equals(containsPattern("bb"), false, 'No occurrences');
