@@ -2,9 +2,9 @@
 module("About Functions kata (topics/about_functions_kata.js)");
 
 test("define a function", function() {
-    var returnedValue = 1;
+    var returnValue = 1;
     // __
-    equals(definedFunction(), returnedValue, 'how to define a function?');
+    equals(definedFunction(), returnValue, 'how to define a function?');
 });
 
 test("define a function with parameters", function() {
@@ -21,10 +21,10 @@ test("define a function with an optional parameter", function() {
 });
 
 test("return a function", function() {
-    var value = 1;
+    var returnValue = 1;
     // __
     var returnedFunction = myFunction();
-    equals(returnedFunction(), value, 'how to define a function returning a function?');		
+    equals(returnedFunction(), returnValue, 'how to define a function returning a function?');		
 });
 
 test("pass a function as an argument", function() {
@@ -51,7 +51,7 @@ test("function with variable number of arguments", function() {
         for (var i = 0; i < __; i++)
             result *= __;
         return result;
-    }
+    };
     equals(product(1), 1, 'how to define a function with varying number of parameters?');
     equals(product(1, 2), 2, 'how to define a function with varying number of parameters?');
     equals(product(1, 2, 3), 6, 'how to define a function with varying number of parameters?');
@@ -180,7 +180,7 @@ test("closure: ... changing to the next level in the scope chain does not help",
     var i = 1;
     function createFunction() {
         return function() {return i;}
-    };
+    }
     var f1 = createFunction();
     i = 2;
     var f2 = createFunction();
@@ -192,7 +192,7 @@ test("closure: ... but we can make a static copy by passing it as an argument of
     var i = 1;
     function createFunctionWithStaticCopyOf(i) {
         return function() {return i;}
-    };
+    }
     var f1 = createFunctionWithStaticCopyOf(i);
     i = 2;
     var f2 = createFunctionWithStaticCopyOf(i);
