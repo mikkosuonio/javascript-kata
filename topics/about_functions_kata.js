@@ -190,12 +190,25 @@ test("closure: ... changing to the next level in the scope chain does not help",
 
 test("closure: ... but we can make a static copy by passing it as an argument of a function", function() {
     var i = 1;
-    function createFunctionWithStaticCopyOf(i) {
-        return function() {return i;}
+    function createFunctionWithStaticCopyOf(x) {
+        return function() {return x;}
     }
     var f1 = createFunctionWithStaticCopyOf(i);
     i = 2;
     var f2 = createFunctionWithStaticCopyOf(i);
+    equals(f1(), __, 'what is the return value of the function?');
+    equals(f2(), __, 'what is the return value of the function?');
+});
+
+test("closure: ... or by storing it to a variable", function() {
+    var i = 1;
+    function createFunction() {
+        var copy = i;
+        return function() {return copy;}
+    }
+    var f1 = createFunction();
+    i = 2;
+    var f2 = createFunction();
     equals(f1(), __, 'what is the return value of the function?');
     equals(f2(), __, 'what is the return value of the function?');
 });
