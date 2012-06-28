@@ -13,46 +13,91 @@ test("catch an exception", function() {
     // __
     throw {};
     // __
-    ok(exceptionWasCaught, 'how to catch an exception');
+    exceptionWasCaught = true;
+    equals(exceptionWasCaught, true, 'how to catch an exception');
 });
 
 test("throw a standard exception", function() {
+    var exception;
     try {
         // __
     }
     catch (e) {
-        equals(e.name, 'Error', 'what is the name of the error?');
-        equals(e.message, 'message', 'what is the associated error messsage?');
+        exception = e;
     }
+    equals(exception.name, 'Error', 'what is the name of the error?');
+    equals(exception.message, 'message', 'what is the associated error messsage?');
 });
 
 test("throw a primitive type", function() {
+    var exception;
     try {
         // __
     }
     catch (e) {
-        equals(e, 'it was my fault', 'how does the error look like?');        
+        exception = e;
     }
+    equals(exception, 'it was my fault', 'how does the error look like?');        
 });
 
-test("perform an operation finally whatever happens: no exceptions", function() {
-    var operationWasPerformed = false;
+test("rethrow a exception", function() {
+    var exception;
     try {
+        try {
+            throw new Error('it was my fault');
+        }
+        catch (e) {
+            // __
+        }
     }
-    // __
-    ok(operationWasPerformed, 'how to perform an operation finally');
+    catch (e) {
+        exception = e;
+    }
+    equals(exception.message, 'it was my fault', 'how does the error look like?');        
 });
 
-test("perform an operation finally whatever happens: exception occurs", function() {
+test("perform an operation finally whatever happens", function() {
     var operationWasPerformed = false;
     try {
         try {
             throw 'exception';
         }
-        // __
+        finally {
+            // __
+        }
     }
     catch (e) {}
-    ok(operationWasPerformed, 'how to perform an operation finally');
+    equals(operationWasPerformed, true, 'how to perform an operation finally');
+});
+
+test("perform an operation finally whatever happens: catch present", function() {
+    var operationWasPerformed = false;
+    try {
+        try {
+            throw 'exception';
+        }
+        catch (e) {}
+        finally {
+            // __
+        }
+    }
+    catch (e) {}
+    equals(operationWasPerformed, true, 'how to perform an operation finally');
+});
+
+test("exception causes call stack to be unwound", function() {
+    var exceptionWasCaught;
+    function functionThrowingException() {
+        throw {};
+    }
+    try {
+        functionThrowingException();
+        exceptionWasCaught = false;
+    }
+    catch (e) {
+        exceptionWasCaught = true;
+    }
+    equals(exceptionWasCaught, __, 'how to perform an operation finally');
 });
 
 // catch multiple possible exceptions
@@ -64,6 +109,5 @@ test("perform an operation finally whatever happens: exception occurs", function
 //     no exception in try block
 //     exception in try block
 //     catch 
-// rethrow an exception
 // a nested exception occurs when in catch or finally
 // jump (return, break, continue) out of try block
