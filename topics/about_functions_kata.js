@@ -36,6 +36,25 @@ test("pass a function as an argument", function() {
     equals(functionWithFunctionAsParameter(argumentFunction, 2), 4, 'how to define a function with a function as an parameter?');		
 });
 
+test("parameter with a primitive type is passed by value", function() {
+    var i = 1;
+    var functionWithParameter = function(x) {
+        x = 2;
+    };
+    functionWithParameter(i);
+    equals(i, __, 'has the variable been modified?');
+});
+
+test("parameter with a primitive type initializes an argument of the same type", function() {
+    var i = 1;
+    var functionWithParameter = function(x) {
+        return typeof x;
+    };
+    var typeInSide = functionWithParameter(i);
+    equals(typeof i, 'number', 'what is the type of the value outside the function?');
+    equals(typeInside, __, 'what is the type of the value inside the function?');
+});
+
 test("function object parameters are passed by reference", function() {
     var object = {property: false};
     var functionWithParameter = function(x) {
@@ -188,7 +207,7 @@ test("closure: ... changing to the next level in the scope chain does not help",
     equals(f2(), __, 'what is the return value of the function?');
 });
 
-test("closure: ... but we can make a static copy by passing it as an argument of a function", function() {
+test("closure: ... but we can make a static copy by passing it (by value) as an argument of a function", function() {
     var i = 1;
     function createFunctionWithStaticCopyOf(x) {
         return function() {return x;}
@@ -213,6 +232,19 @@ test("closure: ... or by storing it to a variable", function() {
     equals(f2(), __, 'what is the return value of the function?');
 });
 
+test("closure: ... however: objects are passed by reference and the closure always refers to the latest state of the object", function() {
+    var iInObject = {i: 1};
+    function createFunction() {
+        var copy = iInObject;
+        return function() {return copy['i'];}
+    }
+    var f1 = createFunction();
+    iInObject['i'] = 2;
+    var f2 = createFunction();
+    equals(f1(), __, 'what is the return value of the function?');
+    equals(f2(), __, 'what is the return value of the function?');
+});
+
 var temporary = 1;
 test("functions as a temporary namespace", function () {
     equals(typeof(temporary), "undefined", 'how to avoid temporary variables polluting the global namespace?');
@@ -220,8 +252,6 @@ test("functions as a temporary namespace", function () {
 
 // closures
 // - accessing this or arguments of an outer function
-// function parameters of basic types are essentially passed by value
-// function parameters of basic types are converted to wrapper objects
 // partial application / currying
 // - see The bind() method in Functions: Function properties, ...
 // - Alternative implementation: see http://javascriptweblog.wordpress.com/2010/04/05/curry-cooking-up-tastier-functions/
