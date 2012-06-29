@@ -219,7 +219,6 @@ test("functions as a temporary namespace", function () {
 });
 
 // closures
-// - the initial value of a variable in the lexical scope of a function passed as a parameter to an enclosing function
 // - accessing this or arguments of an outer function
 // function parameters of basic types are essentially passed by value
 // function parameters of basic types are converted to wrapper objects
