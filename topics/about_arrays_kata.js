@@ -37,6 +37,8 @@ test("concatenate arrays", function() {
     var array2 = [4, 5, 6];
     var concatenated = __;
     deepEqual(concatenated, [1, 2, 3, 4, 5, 6], 'how to concatenate the arrays?');
+    deepEqual(array1, [1, 2, 3], 'the original array does not change');
+    deepEqual(array2, [4, 5, 6], 'the original array does not change');
 });
 
 test("slice a portion of an array", function() {
