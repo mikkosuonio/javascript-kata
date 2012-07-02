@@ -18,7 +18,13 @@ test("slice a portion of an array", function() {
     var array = ['a', 'b', 'c', 'd'];
     var portion = __;
     deepEqual(portion, ['b', 'c'], 'how to slice a portion of an array?');
-    deepEqual(array, ['a', 'b', 'c'], 'the original array does not change');
+    deepEqual(array, ['a', 'b', 'c', 'd'], 'the original array does not change');
+});
+
+test("slice a portion of an array to the end", function() {
+    var array = ['a', 'b', 'c', 'd'];
+    var portion = __;
+    deepEqual(portion, ['b', 'c', 'd'], 'how to slice a portion of an array?');
 });
 
 test("slice a portion at the end of an array", function() {
