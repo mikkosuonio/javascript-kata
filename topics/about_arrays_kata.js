@@ -12,11 +12,10 @@ test("concatenate arrays", function() {
     var concatenated = __;
     deepEqual(concatenated, [1, 2, 3, 4, 5, 6], 'how to concatenate the arrays?');
     deepEqual(array1, [1, 2, 3], 'the original array does not change');
-    deepEqual(array2, [4, 5, 6], 'the original array does not change');
 });
 
 test("slice a portion of an array", function() {
-    var array = ['a', 'b', 'c'];
+    var array = ['a', 'b', 'c', 'd'];
     var portion = __;
     deepEqual(portion, ['b', 'c'], 'how to slice a portion of an array?');
     deepEqual(array, ['a', 'b', 'c'], 'the original array does not change');
