@@ -1,32 +1,6 @@
 
 module("Arrays kata (topics/about_arrays_kata.js)");
 
-test("equality", function() {
-    equals([] == [], __, 'are the arrays equal?');
-    equals([ 1 ] == [ 1 ], __, 'are the arrays equal?');
-    equals([ 1 ] == [ 2 ], __, 'are the arrays equal?');
-
-    var array1 = [ 1 ];
-    var array2 = array1;
-    equals(array1 == array2, __, 'are the arrays equal?');
-
-    var object = {};
-    equals([ object ] == [ object ], __, 'are the arrays equal?');
-});
-
-test("strict equality", function() {
-    equals([] === [], __, 'are the arrays the same?');
-    equals([ 1 ] === [ 1 ], __, 'are the arrays the same?');
-    equals([ 1 ] === [ 2 ], __, 'are the arrays the same?');
-
-    var array1 = [ 1 ];
-    var array2 = array1;
-    equals(array1 === array2, __, 'are the arrays the same?');
-
-    var object = {};
-    equals([ object ] === [ object ], __, 'are the arrays the same?');
-});
-
 test("length of an array", function() {
     var array = ['a','b','c'];
     equals(__, 3, 'how to compute the length of an array?');
@@ -132,6 +106,32 @@ test("sort an array of numbers", function() {
     var array = [10, 5, 1];
     // __
     deepEqual(array, [1, 5, 10], 'how to sort the array?');
+});
+
+test("equality", function() {
+    equals([] == [], __, 'are the arrays equal?');
+    equals([ 1 ] == [ 1 ], __, 'are the arrays equal?');
+    equals([ 1 ] == [ 2 ], __, 'are the arrays equal?');
+
+    var array1 = [ 1 ];
+    var array2 = array1;
+    equals(array1 == array2, __, 'are the arrays equal?');
+
+    var object = {};
+    equals([ object ] == [ object ], __, 'are the arrays equal?');
+});
+
+test("strict equality", function() {
+    equals([] === [], __, 'are the arrays the same?');
+    equals([ 1 ] === [ 1 ], __, 'are the arrays the same?');
+    equals([ 1 ] === [ 2 ], __, 'are the arrays the same?');
+
+    var array1 = [ 1 ];
+    var array2 = array1;
+    equals(array1 === array2, __, 'are the arrays the same?');
+
+    var object = {};
+    equals([ object ] === [ object ], __, 'are the arrays the same?');
 });
 
 // parameters (array[i],i,array) of predicates: every, filter, some
