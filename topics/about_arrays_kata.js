@@ -76,6 +76,29 @@ test("check if an array contains an item satisfying a predicate", function() {
     equals(someItemsSatisfy([]), false, 'empty array');
 });
 
+test("check if an array contains an item satisfying a predicate: predicate parameters", function() {
+    var sampleArray = [1, 2, 3];
+    var someItemsSatisfy = function(a) {
+        return a.some(function(element, index, array) {
+            return __;
+        });
+    };
+    equals(someItemsSatisfy([1, 3, 4]), true, 'one item in the same position');
+    equals(someItemsSatisfy([2, 3, 4]), false, 'no items in the same position');
+    equals(someItemsSatisfy([1, 2, 4]), true, 'two items in the same positions');
+});
+
+test("filter array items satisfying a predicate", function() {
+    var filterItems = function(a) {
+        return __;
+    };
+    deepEqual(filterItems([1, 2, 3]), [2], 'one even number');
+    deepEqual(filterItems([1, 3, 5]), [], 'all numbers are odd');
+    deepEqual(filterItems([1, 2, 4]), [2, 4], 'multiple even numbers');
+    deepEqual(filterItems([1, 2, 2]), [2, 2], 'multiple, repeated even numbers');
+    deepEqual(filterItems([]), [], 'empty array');
+});
+
 test("for each element of an array", function() {
     var array = [1, 2, 3];
     var sum = 0;
@@ -139,7 +162,6 @@ test("strict equality", function() {
     equals([ object ] === [ object ], __, 'are the arrays the same?');
 });
 
-// parameters (array[i],i,array) of predicates: every, filter, some
 // parameters (array[i],i,array) of functions for: forEach, map
 // array-like objects
 // push an item to the end of an array
@@ -149,4 +171,6 @@ test("strict equality", function() {
 // join array elements to form a string
 // - default separator
 // - given separator
+// every item satisfies a predicate
+// parameters (array[i],i,array) of predicates: every, filter
 
