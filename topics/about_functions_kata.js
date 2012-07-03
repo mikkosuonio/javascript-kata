@@ -50,7 +50,7 @@ test("parameter with a primitive type initializes an argument of the same type",
     var functionWithParameter = function(x) {
         return typeof x;
     };
-    var typeInSide = functionWithParameter(i);
+    var typeInside = functionWithParameter(i);
     equals(typeof i, 'number', 'what is the type of the value outside the function?');
     equals(typeInside, __, 'what is the type of the value inside the function?');
 });
@@ -74,14 +74,6 @@ test("function with variable number of arguments", function() {
     equals(product(1), 1, 'how to define a function with varying number of parameters?');
     equals(product(1, 2), 2, 'how to define a function with varying number of parameters?');
     equals(product(1, 2, 3), 6, 'how to define a function with varying number of parameters?');
-});
-
-test("arguments object: use as an array", function() {
-    var joinTheParameters = function(/* ... */) {
-        return __;
-    };
-    equals(joinTheParameters(1), "1", 'how to call an array method on arguments?');
-    equals(joinTheParameters(1, 2), "1,2", 'how to call an array method on arguments?');
 });
 
 test("invocation: call a function as a method of an object", function() {
@@ -109,6 +101,14 @@ test("invocation: apply a function with varying/unknown number of parameters", f
     equals(object.result, 1, 'result for a function with one parameter');
     changeTheObject.call(object, function2, 2, 3);
     equals(object.result, 6, 'result for a function with two parameters');
+});
+
+test("arguments object: use as an array", function() {
+    var joinTheParameters = function(/* ... */) {
+        return __;
+    };
+    equals(joinTheParameters(1), "1", 'how to call an array method on arguments?');
+    equals(joinTheParameters(1, 2), "1,2", 'how to call an array method on arguments?');
 });
 
 test("functions are hoisted to the top of the enclosing function / script", function() {
