@@ -221,7 +221,7 @@ test("enumerate properties of an object: inherited properties", function() {
     var keys = [];
     // __
     keys.sort();
-    deepEqual(keys, ['age', 'name'], "how to obtain the property names?");
+    deepEqual(keys, ['age', 'name'], "how to obtain the names of both own and inherited properties?");
 });
 
 test("enumerate properties of an object: detect inherited properties", function() {
@@ -263,7 +263,6 @@ test("get own properties (even nonenumerable) of an object", function() {
 });
 
 // add a method enabling automatic conversion to a primitive value (other than string)
-// wrap a method in an object providing a new implementation which uses the old ()
 // object has private data which can be used by dedicated methods only
 // share a method between two objects / classes
 // inherit (statically) all properties from two objects (the prototype object and another object)
