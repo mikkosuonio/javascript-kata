@@ -122,46 +122,6 @@ test("functions are hoisted to the top of the enclosing function / script", func
     equals(result === "can call!", __, 'can it call the function?');
 });
 
-test("function expression stored in a variable can be used after initialization!", function () {
-    var callFunctionAlreadyInitializedWhenThisIsCalled = function() {
-        return callThis();
-    };
-    var callThis = function() {
-        return "can call!";
-    };
-    var result = callFunctionAlreadyInitializedWhenThisIsCalled();
-    equals(result === "can call!", __, 'can it call the function?');
-});
-
-test("function expression stored in a variable cannot be used before initialization!", function () {
-    var callFunctionNotYetInitialized = function() {
-        return callThis();
-    };
-    var result;
-    try {
-        result = callFunctionNotYetInitialized();
-    }
-    catch (exception) {
-    }
-    var callThis = function() {
-        return "can call!";
-    };
-    equals(result === "can call!", __, 'can it call the function?');
-});
-
-test("function expression stored in a variable is not defined before initialization!", function () {
-    var result;
-    try {
-        result = callThis();
-    }
-    catch (exception) {
-    }
-    equals(callThis, __, 'what is the value of callThis');
-    var callThis = function() {
-        return "can call!";
-    };
-});
-
 test("closure: function evaluated in the same (lexical) scope as where it was defined", function() {
     var i = 1;
     function getValue() {
@@ -248,6 +208,46 @@ test("closure: ... however: objects are passed by reference and the closure alwa
 var temporary = 1;
 test("functions as a temporary namespace", function () {
     equals(typeof(temporary), "undefined", 'how to avoid temporary variables polluting the global namespace?');
+});
+
+test("function expression stored in a variable can be used after initialization!", function () {
+    var callFunctionAlreadyInitializedWhenThisIsCalled = function() {
+        return callThis();
+    };
+    var callThis = function() {
+        return "can call!";
+    };
+    var result = callFunctionAlreadyInitializedWhenThisIsCalled();
+    equals(result === "can call!", __, 'can it call the function?');
+});
+
+test("function expression stored in a variable cannot be used before initialization!", function () {
+    var callFunctionNotYetInitialized = function() {
+        return callThis();
+    };
+    var result;
+    try {
+        result = callFunctionNotYetInitialized();
+    }
+    catch (exception) {
+    }
+    var callThis = function() {
+        return "can call!";
+    };
+    equals(result === "can call!", __, 'can it call the function?');
+});
+
+test("function expression stored in a variable is not defined before initialization!", function () {
+    var result;
+    try {
+        result = callThis();
+    }
+    catch (exception) {
+    }
+    equals(callThis, __, 'what is the value of callThis');
+    var callThis = function() {
+        return "can call!";
+    };
 });
 
 // closures
