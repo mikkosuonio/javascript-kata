@@ -57,9 +57,9 @@ test("search for an occurrence of a regular expression", function() {
     equals(searchRegExp("abbabc"), 2, 'One occurrence in different position');
     equals(searchRegExp("abaabc"), 1, 'One longer occurrence');
     equals(searchRegExp("abbaabc"), 2, 'One longer occurrence in different position');
+    equals(searchRegExp("abbabbaab"), 2, 'Multiple occurrences, index of the first one');
     equals(searchRegExp("baaabc"), 0, 'One occurrence at the beginning');
     equals(searchRegExp("aab"), -1, 'No occurrences');
-    equals(searchRegExp("abbabbaab"), 2, 'Multiple occurrences, index of the first one');
 });
 
 test("replace a substring", function() {
@@ -111,7 +111,7 @@ test("split a string on a separator", function() {
 });
 
 test("split a string on a separator expressed as a regular expression", function() {
-    var fruits = "apple ,orange ,pear";
+    var fruits = "apple ,orange, pear";
     deepEqual(__, ['apple','orange','pear'], 'how to split the string on regular expression?');
 });
 
@@ -149,5 +149,5 @@ test("convert a number to string", function() {
 
 // convert number to string
 //   fixed, exponential, precision
-// parsing numbers to strings
+// parsing numbers from strings
 //   integers, floats, hexadecimals, other base
