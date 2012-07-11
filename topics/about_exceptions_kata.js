@@ -13,7 +13,6 @@ test("catch an exception", function() {
     // __
     throw {};
     // __
-    exceptionWasCaught = true;
     equals(exceptionWasCaught, true, 'how to catch an exception');
 });
 
