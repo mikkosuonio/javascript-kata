@@ -136,6 +136,21 @@ test("sort an array of numbers", function() {
     deepEqual(array, [1, 5, 10], 'how to sort the array?');
 });
 
+test("array-like objects: most array methods are generic", function() {
+    var array =  {0:'a', 1:'b', 2:'c', 3:'d', length:4};
+    var portion = __;
+    deepEqual(portion, ['b', 'c', 'd'], 'how to slice a portion of an array-like object?');
+});
+
+test("array-like objects: concat is an exception", function() {
+    var array1 = ['a', 'b', 'c'];
+    var array2 = {0:'d', 1:'e', 2:'f', length:3};
+    var concatenated12 = array1.concat(array2);
+    deepEqual(concatenated12, __, 'what happens when concatenating an array-like object?');
+    var concatenated21 = Array.prototype.concat.call(array2, array1);
+    deepEqual(concatenated21, __, 'what happens when concatenating to an array-like object?');
+});
+
 test("equality", function() {
     equals([] == [], __, 'are the arrays equal?');
     equals([ 1 ] == [ 1 ], __, 'are the arrays equal?');
@@ -163,7 +178,6 @@ test("strict equality", function() {
 });
 
 // parameters (array[i],i,array) of functions for: forEach, map
-// array-like objects
 // push an item to the end of an array
 // pop an item from the end of an array
 // insert an item at the beginning of an array
