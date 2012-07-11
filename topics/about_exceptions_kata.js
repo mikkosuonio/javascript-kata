@@ -4,7 +4,7 @@ module("Exceptions kata (topics/about_exceptions_kata.js)");
 test("throw an exception", function() {
     function functionThrowingException() {
         // __
-    };
+    }
     raises(functionThrowingException, "how to throw an exception?");
 });
 
@@ -84,6 +84,41 @@ test("perform an operation finally whatever happens: catch present", function() 
     equals(operationWasPerformed, true, 'how to perform an operation finally');
 });
 
+test("perform an operation finally whatever happens: exception when handling the finally block", function() {
+    var exceptions = [];
+    try {
+        try {
+            throw 'exception 1';
+        }
+        finally {
+            throw 'exception 2';
+        }
+    }
+    catch (e) {
+        exceptions.push(e);
+    }
+    deepEqual(exceptions, __, 'which exceptions propagate out of the inner try-finally?');
+});
+
+test("perform an operation finally whatever happens: return when handling the finally block", function() {
+    var exceptions = [];
+    function functionThrowingException() {
+        try {
+            throw 'exception';
+        }
+        finally {
+            return;
+        }
+    }
+    try {
+        functionThrowingException();
+    }
+    catch (e) {
+        exceptions.push(e);
+    }
+    deepEqual(exceptions, __, 'which exceptions propagate out of the try-finally?');
+});
+
 test("exception causes call stack to be unwound", function() {
     var exceptionWasCaught;
     function functionThrowingException() {
@@ -108,5 +143,5 @@ test("exception causes call stack to be unwound", function() {
 //     no exception in try block
 //     exception in try block
 //     catch 
-// a nested exception occurs when in catch or finally
+// a nested exception occurs when in catch
 // jump (return, break, continue) out of try block
