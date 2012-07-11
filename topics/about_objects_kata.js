@@ -190,7 +190,7 @@ test("define conversion to string for an object", function() {
 });
 
 test("enumerate properties of an object", function() {
-    var person = {
+    var me = {
         name: 'Mikko',
         age: 38
     };
