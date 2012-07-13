@@ -160,6 +160,7 @@ test("parse an integer from a string", function() {
     strictEqual(parse('0xc'), 12, 'how to parse a hexadecimal integer?');
     strictEqual(parse('0xC'), 12, 'how to parse a hexadecimal integer?');
     strictEqual(parse('0Xc'), 12, 'how to parse a hexadecimal integer?');
+    strictEqual(parse('not a number'), NaN, 'what happens when it is not a number?');
 });
 
 test("parse an integer with given base", function() {
