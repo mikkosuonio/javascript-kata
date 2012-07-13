@@ -147,7 +147,30 @@ test("convert a number to string", function() {
     strictEqual(Number(17*17), "100", 'how to convert to base 17?');
 });
 
+test("parse an integer from a string", function() {
+    function parse(str) {
+        return __;
+    };
+    strictEqual(parse('12'), 12, 'how to parse an integer?');
+    strictEqual(parse('012'), 12, 'how to parse an integer (in base 10)?');
+    strictEqual(parse('-12'), -12, 'how to parse an integer?');
+    strictEqual(parse('12.34'), 12, 'how to parse an integer?');
+    strictEqual(parse('12 something'), 12, 'how to parse an integer?');
+    strictEqual(parse('  12'), 12, 'how to parse an integer?');
+    strictEqual(parse('0xc'), 12, 'how to parse a hexadecimal integer?');
+    strictEqual(parse('0xC'), 12, 'how to parse a hexadecimal integer?');
+    strictEqual(parse('0Xc'), 12, 'how to parse a hexadecimal integer?');
+});
+
+test("parse an integer with given base", function() {
+    strictEqual("100", 4, 'how to parse an integer in binary?');
+    strictEqual("100", 64, 'how to parse an integer in octal?');
+    strictEqual("100", 256, 'how to parse an integer in hexadecimal?');
+    strictEqual("0x100", 256, 'how to parse an integer in hexadecimal?');
+    strictEqual("100", 17*17, 'how to parse an integer in base 17?');
+});
+
 // convert number to string
 //   fixed, exponential, precision
 // parsing numbers from strings
-//   integers, floats, hexadecimals, other base
+//   floats
