@@ -152,7 +152,7 @@ test("parse an integer from a string", function() {
         return __;
     };
     strictEqual(parse('12'), 12, 'how to parse an integer?');
-    strictEqual(parse('012'), 12, 'how to parse an integer (in base 10)?');
+    strictEqual(parse('012'), 10, 'how to parse an integer (in base 8!)?');
     strictEqual(parse('-12'), -12, 'how to parse an integer?');
     strictEqual(parse('12.34'), 12, 'how to parse an integer?');
     strictEqual(parse('12 something'), 12, 'how to parse an integer?');
@@ -160,7 +160,7 @@ test("parse an integer from a string", function() {
     strictEqual(parse('0xc'), 12, 'how to parse a hexadecimal integer?');
     strictEqual(parse('0xC'), 12, 'how to parse a hexadecimal integer?');
     strictEqual(parse('0Xc'), 12, 'how to parse a hexadecimal integer?');
-    strictEqual(parse('not a number'), NaN, 'what happens when it is not a number?');
+    strictEqual(isNaN(parse('not a number')), true, 'what happens when it is not a number?');
 });
 
 test("parse an integer with given base", function() {
