@@ -61,18 +61,18 @@ test("splice: replace elements in an array", function() {
 
 test("find an item from an array", function() {
     var array = ['a', 'b', 'c', 'a'];
-    equals(__, 1, 'find the index of an item in the array?');
-    equals(__, -1, 'how to find that an item is not in the array?');
-    equals(__, 0, 'find the index of the first occurrence of an item in the array?');
+    equals(__, 1, "find the index of letter 'b' in the array?");
+    equals(__, -1, "how to verify that letter 'd' is not in the array?");
+    equals(__, 0, "find the index of the first occurrence of letter 'a' in the array?");
 });
 
 test("check if an array contains an item satisfying a predicate", function() {
     var someItemsSatisfy = function(a) {
         return __;
     };
-    equals(someItemsSatisfy([1, 2, 3]), true, 'an item satisfies');
-    equals(someItemsSatisfy([1, 3, 4]), false, 'no items satisfy');
-    equals(someItemsSatisfy([1, 2, 2]), true, 'multiple items satisfies');
+    equals(someItemsSatisfy([1, 2, 3]), true, 'contains number 2');
+    equals(someItemsSatisfy([1, 3, 4]), false, 'does not contain number 2');
+    equals(someItemsSatisfy([1, 2, 2]), true, 'contains multiple occurrences of number 2');
     equals(someItemsSatisfy([]), false, 'empty array');
 });
 
