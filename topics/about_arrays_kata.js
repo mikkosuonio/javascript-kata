@@ -112,16 +112,22 @@ test("map an array to produce a result array", function() {
     deepEqual(squares, [1, 4, 9], 'how to compute the result array?');
 });
 
-test("reduce/fold/inject/accumulate an array to produce a scalar result", function() {
+test("reduce/fold/inject/accumulate an array", function() {
     var array = [1, 2, 3];
     var product = __;
-    equals(product, 6, 'how to compute the result?');
+    equals(product, 6, 'how to compute the sum of the elements?');
 });
 
 test("reduce an array starting from an initial value for the result", function() {
     var array = [false, true, false];
     var numberOfTruths = __;
-    equals(numberOfTruths, 1, 'how to compute the result?');
+    equals(numberOfTruths, 1, 'how to compute the number of truths in the array?');
+});
+
+test("reduce an array to produce a result starting from right", function() {
+    var array = [2, 3, 18];
+    var result = __;
+    equals(result, (18/3)/2, 'how to compute the result?');
 });
 
 test("sort an array of strings", function() {
