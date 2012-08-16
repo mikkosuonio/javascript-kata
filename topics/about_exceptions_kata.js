@@ -131,10 +131,25 @@ test("exception causes call stack to be unwound", function() {
     catch (e) {
     }
     statements.push('statement 2');
-    deepEqual(statements, ['statement 2'], 'where does the execution go');
+    deepEqual(statements, [], 'where does the execution go');
 });
 
-// catch multiple possible exceptions
+test("catch multiple possible exceptions", function() {
+    var exception;
+    try {
+        if (Math.random() > 0.5) {
+            throw 'exception 1';
+        }
+        else {
+            throw 'exception 2';
+        }
+    }
+    catch (e) {
+        equal(exception, 'exception 1', 'was this exception caught?');
+        equal(exception, 'exception 2', 'was this exception caught?');
+    }
+});
+
 // execution order when an exception is thrown
 //   statement after throw is not executed
 //   statement after try-finally is not executed if the exception is not caught
