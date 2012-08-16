@@ -52,7 +52,7 @@ test("rethrow a exception", function() {
     catch (e) {
         exception = e;
     }
-    equals(exception.message, 'it was my fault', 'how does the error look like?');        
+    equals(exception.message, 'it was my fault', 'is it the same exception?');
 });
 
 test("perform an operation finally whatever happens", function() {
