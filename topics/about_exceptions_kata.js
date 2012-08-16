@@ -120,18 +120,18 @@ test("perform an operation finally whatever happens: return when handling the fi
 });
 
 test("exception causes call stack to be unwound", function() {
-    var exceptionWasCaught;
+    var statements = [];
     function functionThrowingException() {
         throw {};
+        statements.push('statement 1');
     }
     try {
         functionThrowingException();
-        exceptionWasCaught = false;
     }
     catch (e) {
-        exceptionWasCaught = true;
     }
-    equals(exceptionWasCaught, __, 'how to perform an operation finally');
+    statements.push('statement 2');
+    deepEqual(statements, ['statement 2'], 'where does the execution go');
 });
 
 // catch multiple possible exceptions
