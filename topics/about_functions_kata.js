@@ -33,7 +33,7 @@ test("pass a function as an argument", function() {
         return x*x;
     };
     var functionWithFunctionAsParameter = __;
-    equals(functionWithFunctionAsParameter(argumentFunction, 2), 4, 'how to define a function with a function as an parameter?');		
+    equals(functionWithFunctionAsParameter(argumentFunction, 2), 4, 'how to define a function with a function as a parameter?');		
 });
 
 test("parameter with a primitive type is passed by value", function() {
