@@ -93,14 +93,12 @@ test("invocation: apply a function with varying/unknown number of parameters", f
     var function2 = function(x, y) {
         return x*y;
     };
-    var changeTheObject = function(f /* ... */) {
+    var applyTheFunction = function(f /* ... */) {
         var argumentsForF = [].slice.call(arguments, 1);
-        this.result = __;
+        return __;
     };
-    changeTheObject.call(object, function1, 1);
-    equals(object.result, 1, 'result for a function with one parameter');
-    changeTheObject.call(object, function2, 2, 3);
-    equals(object.result, 6, 'result for a function with two parameters');
+    equals(applyTheFunction(function1, 1), 1, 'result for a function with one parameter');
+    equals(applyTheFunction(function2, 2, 3), 6, 'result for a function with two parameters');
 });
 
 test("arguments object: use as an array", function() {
