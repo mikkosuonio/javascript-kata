@@ -45,7 +45,7 @@ test("parameter with a primitive type is passed by value", function() {
     equals(i, __, 'has the variable been modified?');
 });
 
-test("parameter with a primitive type initializes an argument of the same type", function() {
+test("argument with a primitive type initializes a parameter of the same type", function() {
     var i = 1;
     var functionWithParameter = function(x) {
         return typeof x;
