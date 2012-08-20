@@ -123,17 +123,17 @@ test("add a method allowing comparison of objects of the class: equality", funct
     var me = new Person('Mikko');
     var anotherMe = new Person('Mikko');
     var friend = new Person('Tommi');
-    var different = new String('Mikko');
-    function Animal(name) {
+    function Creature(name) {
         this.name = name;
     };
-    var differentKind = new Animal('Fido');
-    equals(me.equals(me), true, "am I equal to myself?");
-    equals(me.equals(anotherMe), true, "am I equal to another me?");
-    equals(!me.equals(friend), true, "am I not equal to my friend?");
-    equals(!me.equals(different), true, "am I not equal to an object of another class?");
-    equals(!me.equals(differentKind), true, "am I not equal to an object of another class (which has a name)?");
-    equals(!me.equals({}), true, "am I not equal to an empty object?");
+    var differentClass = new Creature('Mikko');
+    var withoutName = new String('Mikko');
+    equals(me.equals(me), true, "I am equal to myself");
+    equals(me.equals(anotherMe), true, "I am equal to another me");
+    equals(!me.equals(friend), true, "I am not equal to my friend");
+    equals(!me.equals(differentClass), true, "I am not equal to an object of another class (although it has a name)");
+    equals(!me.equals(withoutName), true, "I am not equal to an object of another class");
+    equals(!me.equals({}), true, "I am not equal to an empty object");
 });
 
 test("add a method allowing comparison of objects of the class: compareTo", function() {
