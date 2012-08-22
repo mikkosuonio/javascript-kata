@@ -255,12 +255,12 @@ test("get own properties (even nonenumerable) of an object", function() {
         inherited: true
     };
     var object = Object.create(parent, {
-        ownProperty: {value: true},
-        nonEnumerableProperty: {value: true, enumerable: false}
+        enumerableOwnProperty: {value: true},
+        nonEnumerableOwnProperty: {value: true, enumerable: false}
     });
     var keys = __;
     keys.sort();
-    deepEqual(keys, ['nonEnumerableProperty', 'ownProperty'], "how to get a list of own property names?");
+    deepEqual(keys, ['enumerableOwnProperty', 'nonEnumerableOwnProperty'], "how to get a list of own property names?");
 });
 
 // add a method enabling automatic conversion to a primitive value (other than string)
