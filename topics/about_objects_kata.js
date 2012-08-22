@@ -30,6 +30,7 @@ test("define a method referring to an object property", function() {
     var person = {
         name: "Mikko"
     };
+    // __
     equals(person.introduce(), "My name is Mikko", 'what should the introduce method be?');
 });
 
