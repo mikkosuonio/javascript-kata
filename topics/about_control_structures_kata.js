@@ -7,9 +7,9 @@ test("if", function() {
         // __
         return result;
     };
-    strictEqual(convert(1), 'red', 'can it convert the number?');
-    strictEqual(convert(2), undefined, 'can it convert the number?');
-    strictEqual(convert(3), undefined, 'can it convert the number?');
+    strictEqual(convert(1), 'red');
+    strictEqual(convert(2), undefined);
+    strictEqual(convert(3), undefined);
 });
 
 test("if ... else", function() {
@@ -18,9 +18,9 @@ test("if ... else", function() {
         // __
         return result;
     };
-    strictEqual(convert(1), 'red', 'can it convert the number?');
-    strictEqual(convert(2), 'other', 'can it convert the number?');
-    strictEqual(convert(3), 'other', 'can it convert the number?');
+    strictEqual(convert(1), 'red');
+    strictEqual(convert(2), 'other');
+    strictEqual(convert(3), 'other');
 });
 
 test("if ... else if", function() {
@@ -29,9 +29,9 @@ test("if ... else if", function() {
         // __
         return result;
     };
-    strictEqual(convert(1), 'red', 'can it convert the number?');
-    strictEqual(convert(2), 'green', 'can it convert the number?');
-    strictEqual(convert(3), 'other', 'can it convert the number?');
+    strictEqual(convert(1), 'red');
+    strictEqual(convert(2), 'green');
+    strictEqual(convert(3), 'other');
 });
 
 test("switch", function() {
@@ -40,9 +40,9 @@ test("switch", function() {
         // __
         return result;
     };
-    strictEqual(convert(1), 'red', 'can it convert the number?');
-    strictEqual(convert(2), 'green', 'can it convert the number?');
-    strictEqual(convert(3), 'blue', 'can it convert the number?');
+    strictEqual(convert(1), 'red');
+    strictEqual(convert(2), 'green');
+    strictEqual(convert(3), 'blue');
 });
 
 var red = {};
@@ -55,9 +55,9 @@ test("switch: string expressions", function() {
         // __
         return result;
     };
-    strictEqual(convert('red'), red, 'can it convert the number?');
-    strictEqual(convert('green'), green, 'can it convert the number?');
-    strictEqual(convert('blue'), blue, 'can it convert the number?');
+    strictEqual(convert('red'), red);
+    strictEqual(convert('green'), green);
+    strictEqual(convert('blue'), blue);
 });
 
 test("switch: object expressions", function() {
@@ -66,9 +66,9 @@ test("switch: object expressions", function() {
         // __
         return result;
     };
-    strictEqual(convert(red), 'red', 'can it convert the number?');
-    strictEqual(convert(green), 'green', 'can it convert the number?');
-    strictEqual(convert(blue), 'blue', 'can it convert the number?');
+    strictEqual(convert(red), 'red');
+    strictEqual(convert(green), 'green');
+    strictEqual(convert(blue), 'blue');
 });
 
 
