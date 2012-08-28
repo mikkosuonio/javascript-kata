@@ -9,9 +9,9 @@ test("current time", function() {
 
 test("create date using UTC", function() {
     // year 2012, month May, day 17, hours 8, minutes 54, seconds 40, milliseconds 123
-    var dateInMseconds = 1337244880123;
+    var dateInMilliseconds = 1337244880123;
     var sameDateUsingUTC = __;
-    equals(sameDateUsingUTC.valueOf(), dateInMseconds, '');
+    equals(sameDateUsingUTC.valueOf(), dateInMilliseconds, '');
 });
 
 test("create date using local time", function() {
