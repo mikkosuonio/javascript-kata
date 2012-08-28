@@ -58,7 +58,7 @@ test("convert to human-readable string using local time", function() {
 
 test("parse a date/time string: ISO format", function() {
     function parseDate(dateString) {
-        // parse date and return it in millisecond format
+        // parse date and return it in milliseconds
         return __;
     };
     equals(parseDate('2012-05-17T08:54:40.123Z'), Date.UTC(2012, 4, 17, 8, 54, 40, 123), '');
