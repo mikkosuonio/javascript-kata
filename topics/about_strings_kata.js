@@ -147,6 +147,14 @@ test("convert a number to string", function() {
     strictEqual(Number(17*17), "100", 'how to convert to base 17?');
 });
 
+test("convert a number to a string with a fixed number of digits after the decimal point", function() {
+    var number = 123.345
+    strictEqual(__, "123", 'how to convert to zero digits after the decimal point?');
+    strictEqual(__, "123.3", 'how to convert to one digit after the decimal point?');
+    strictEqual(__, "123.35", 'how to convert to two digits after the decimal point with rounding?');
+    strictEqual(__, "123.3450", 'how to convert to four digits after the decimal point with padding?');
+});
+
 test("parse an integer from a string", function() {
     function parse(str) {
         return __;
