@@ -21,10 +21,10 @@ test("serialize primitive types", function() {
 });
 
 test("deserialize primitive types", function() {
-    equals(__, "Mikko", "how to deserialize a string?");
-    equals(__, 12.1, "how to deserialize a number?");
-    equals(__, true, "how to deserialize a boolean?");
-    equals(__, null, "how to deserialize null?");
+    strictEqual(/*__*/'"Mikko"', "Mikko", "how to deserialize a string?");
+    strictEqual(/*__*/'12.1', 12.1, "how to deserialize a number?");
+    strictEqual(/*__*/'true', true, "how to deserialize a boolean?");
+    strictEqual(/*__*/'null', null, "how to deserialize null?");
 });
 
 test("serialize an array", function() {
