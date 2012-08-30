@@ -49,6 +49,13 @@ test("augment a standard class with a new method", function() {
     var string = 'My  name  is   Mikko';
     // __
     equals(string.removeExtraWhiteSpace(), "My name is Mikko", "how to add a method to string class?");
+    equals(stringsDoNotHaveExtraEnumerableProperties(), true, "how to make the method nonenumerable?");
+    function stringsDoNotHaveAdditionalEnumerableProperties() {
+        var keys = [];
+        for (var key in "")
+            keys.push(key);
+        return keys.indexOf('removeExtraWhiteSpace') === -1;
+    }
 });
 
 test("define conversion to string for a class", function() {
