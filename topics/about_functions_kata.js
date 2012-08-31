@@ -85,6 +85,16 @@ test("invocation: call a function as a method of an object", function() {
     equals(object.property, true, 'how to call the function as a method?');
 });
 
+test("invocation: bind a function to an object", function() {
+    var object = {property: false};
+    var functionChangingTheProperty = function() {
+        this.property = true;
+    };
+    var functionChangingTheObject = __;
+    functionChangingTheObject();
+    equals(object.property, true, 'how to bound the function to the object?');
+});
+
 test("invocation: apply a function with varying/unknown number of parameters", function() {
     var object = {result: 0};
     var function1 = function(x) {
@@ -208,6 +218,15 @@ test("functions as a temporary namespace", function () {
     equals(typeof(temporary), "undefined", 'how to avoid temporary variables polluting the global namespace?');
 });
 
+test("partial application: using the bind() method", function() {
+    function add(x, y) {
+        return x + y;
+    }
+    var inc = __;
+    equals(inc(1), 2, 'how to call add() with the first argument bound to a fixed value?');
+    equals(inc(2), 3, 'how to call add() with the first argument bound to a fixed value?');
+});
+
 test("function expression stored in a variable can be used after initialization!", function () {
     var callFunctionAlreadyInitializedWhenThisIsCalled = function() {
         return callThis();
@@ -251,6 +270,5 @@ test("function expression stored in a variable is not defined before initializat
 // closures
 // - accessing this or arguments of an outer function
 // partial application / currying
-// - see The bind() method in Functions: Function properties, ...
 // - Alternative implementation: see http://javascriptweblog.wordpress.com/2010/04/05/curry-cooking-up-tastier-functions/
 
