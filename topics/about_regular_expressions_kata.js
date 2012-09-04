@@ -139,7 +139,7 @@ test("repetition: match zero or one occurrence", function() {
     var containsPattern = function(str) {
         return (str.search(__) != -1);
     };
-    equals(containsPattern(""), true, 'No occurrences in an empty string');
+    equals(containsPattern(""), true, 'One occurrence');
     equals(containsPattern("a"), true, 'One occurrence');
     equals(containsPattern("aa"), true, 'Two occurrences');
     equals(containsPattern("ab"), true, 'One occurrence surrounded by other characters');
