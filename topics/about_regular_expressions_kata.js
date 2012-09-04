@@ -3,7 +3,7 @@ module("About Regular Expressions Kata (topics/about_regular_expressions_kata.js
 
 test("literal characters", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("a"), true, 'One occurrence');
     equals(containsPattern("aa"), true, 'Multiple occurrences');
@@ -14,19 +14,19 @@ test("literal characters", function() {
 
 test("literal characters: punctuation characters with special meaning", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("("), true, 'One occurrence');
     equals(containsPattern("(("), true, 'Multiple occurrences');
     equals(containsPattern("a"), false, 'No occurrences');
     equals(containsPattern("a("), true, 'One occurrence in different position');
-    equals(containsPattern("\("), true, 'One occurrence, but not at the beginning!');
+    equals(containsPattern("\\("), true, 'One occurrence, but not at the beginning!');
     equals(containsPattern(""), false, 'No occurrences in an empty string');
 });
 
 test("literal characters: escape character", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("\\"), true, 'One occurrence only since the string contains only one backslash!');
     equals(containsPattern("\\\\"), true, 'Two occurrences!');
@@ -37,7 +37,7 @@ test("literal characters: escape character", function() {
 
 test("character classes: any one character in a class", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("a"), true, 'One occurrence');
     equals(containsPattern("b"), true, 'One occurrence');
@@ -50,7 +50,7 @@ test("character classes: any one character in a class", function() {
 
 test("character classes: any one character not in a class", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("a"), false, 'No occurrence');
     equals(containsPattern("b"), false, 'No occurrence');
@@ -63,7 +63,7 @@ test("character classes: any one character not in a class", function() {
 
 test("character classes: punctuation character in a class", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("("), true, 'One occurrence');
     equals(containsPattern(")"), true, 'One occurrence');
@@ -71,13 +71,13 @@ test("character classes: punctuation character in a class", function() {
     equals(containsPattern("(("), true, 'Multiple occurrences');
     equals(containsPattern("["), false, 'No occurrences');
     equals(containsPattern("[("), true, 'One occurrence in different position');
-    equals(containsPattern("\("), true, 'One occurrence, but not at the beginning!');
+    equals(containsPattern("\\("), true, 'One occurrence, but not at the beginning!');
     equals(containsPattern(""), false, 'No occurrences in an empty string');
 });
 
 test("character classes: any character", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("a"), true, 'One occurrence');
     equals(containsPattern("b"), true, 'One occurrence');
@@ -89,7 +89,7 @@ test("character classes: any character", function() {
 
 test("character classes: any ASCII word character", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("a"), true, 'One occurrence');
     equals(containsPattern("b"), true, 'One occurrence');
@@ -101,7 +101,7 @@ test("character classes: any ASCII word character", function() {
 
 test("character classes: any Unicode space character", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern(" "), true, 'One occurrence');
     equals(containsPattern("  "), true, 'Multiple occurrences');
@@ -112,7 +112,7 @@ test("character classes: any Unicode space character", function() {
 
 test("character classes: any ASCII digit", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("1"), true, 'One occurrence');
     equals(containsPattern("2"), true, 'One occurrence');
@@ -124,7 +124,7 @@ test("character classes: any ASCII digit", function() {
 
 test("character classes: any character that is not an ASCII digit", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("1"), false, 'No occurrences');
     equals(containsPattern("2"), false, 'No occurrences');
@@ -137,7 +137,7 @@ test("character classes: any character that is not an ASCII digit", function() {
 
 test("repetition: match zero or one occurrence", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern(""), true, 'One occurrence');
     equals(containsPattern("a"), true, 'One occurrence');
@@ -149,7 +149,7 @@ test("repetition: match zero or one occurrence", function() {
 
 test("repetition: match one or more occurrences", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern(""), false, 'No occurrences in an empty string');
     equals(containsPattern("a"), true, 'One occurrence');
@@ -161,7 +161,7 @@ test("repetition: match one or more occurrences", function() {
 
 test("repetition: match zero or more occurrences", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern(""), true, 'One occurrence');
     equals(containsPattern("a"), true, 'One occurrence');
@@ -173,7 +173,7 @@ test("repetition: match zero or more occurrences", function() {
 
 test("repetition: match exactly n occurrences", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("a"), false, 'No occurrences');
     equals(containsPattern("aa"), true, 'One occurrence');
@@ -187,7 +187,7 @@ test("repetition: match exactly n occurrences", function() {
 
 test("repetition: match n or more occurrences", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("a"), false, 'No occurrences');
     equals(containsPattern("aa"), true, 'One occurrence');
@@ -201,7 +201,7 @@ test("repetition: match n or more occurrences", function() {
 
 test("repetition: match at least n but not more than m occurrences", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("a"), false, 'No occurrences');
     equals(containsPattern("aa"), true, 'One occurrence');
@@ -216,7 +216,7 @@ test("repetition: match at least n but not more than m occurrences", function() 
 
 test("concatenation", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("a"), false, 'No occurrences');
     equals(containsPattern("ab"), true, 'One occurrence');
@@ -229,7 +229,7 @@ test("concatenation", function() {
 
 test("alternation", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("a"), true, 'One occurrence');
     equals(containsPattern("b"), true, 'One occurrence');
@@ -243,11 +243,11 @@ test("alternation", function() {
 
 test("grouping", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("a"), false, 'No occurrences');
     equals(containsPattern("ab"), true, 'One occurrence');
-    equals(containsPattern("aba"), true, 'One occurrence');
+    equals(containsPattern("aba"), true, 'One occurrence (only the first two letters');
     equals(containsPattern("abab"), true, 'One occurrence');
     equals(containsPattern("ababab"), true, 'One occurrence');
     equals(containsPattern("ba"), false, 'No occurrences');
@@ -257,7 +257,7 @@ test("grouping", function() {
 
 test("match position: the beginning of the string", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("a"), true, 'One occurrence');
     equals(containsPattern("aa"), true, 'One occurrence');
@@ -268,7 +268,7 @@ test("match position: the beginning of the string", function() {
 
 test("match position: the end of the string", function() {
     var containsPattern = function(str) {
-        return (str.search(__) != -1);
+        return (str.search(__) !== -1);
     };
     equals(containsPattern("b"), true, 'One occurrence');
     equals(containsPattern("bb"), true, 'One occurrence');
