@@ -175,7 +175,7 @@ test("repetition: match exactly n occurrences", function() {
     var containsPattern = function(str) {
         return (str.search(__) != -1);
     };
-    equals(containsPattern("a"), false, 'One occurrence');
+    equals(containsPattern("a"), false, 'No occurrences');
     equals(containsPattern("aa"), true, 'One occurrence');
     equals(containsPattern("aaa"), true, 'One occurrence');
     equals(containsPattern("aab"), true, 'One occurrence surrounded by other characters');
