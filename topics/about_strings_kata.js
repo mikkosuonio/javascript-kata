@@ -180,6 +180,6 @@ test("parse an integer with given base", function() {
 });
 
 // convert number to string
-//   fixed, exponential, precision
+//   exponential, precision
 // parsing numbers from strings
 //   floats
