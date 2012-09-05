@@ -134,10 +134,10 @@ test("convert a primitive type to string", function() {
 });
 
 test("convert a primitive type to string: more examples", function() {
-    strictEqual(String(-0), __, 'what does the string look like?');
-    strictEqual(String(NaN), __, 'what does the string look like?');
-    strictEqual(String(Infinity), __, 'what does the string look like?');
-    strictEqual(String(-Infinity), __, 'what does the string look like?');
+    strictEqual(String(-0), __, 'how does the string look like?');
+    strictEqual(String(NaN), __, 'how does the string look like?');
+    strictEqual(String(Infinity), __, 'how does the string look like?');
+    strictEqual(String(-Infinity), __, 'how does the string look like?');
 });
 
 test("convert a number to string", function() {
