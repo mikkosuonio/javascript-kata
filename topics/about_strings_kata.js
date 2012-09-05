@@ -89,7 +89,7 @@ test("match to find an occurrence and matching subexpressions of a regular expre
     };
     deepEqual(matchRegExp("ab"), ['ab', 'ab'], 'Occurrence with subexpression once');
     deepEqual(matchRegExp("abab"), ['abab', 'ab'], 'Occurrence with subexpression twice');
-    deepEqual(matchRegExp("abaabab"), ['ab', 'ab'], 'Only the first occurrence matches, with subexpression once');
+    deepEqual(matchRegExp("abaabab"), ['ab', 'ab'], 'Only the first occurrence is returned, with subexpression once');
     deepEqual(matchRegExp("ba"), null, 'No occurrences');
     deepEqual(matchRegExp(""), null, 'No occurrences in an empty string');
 });
