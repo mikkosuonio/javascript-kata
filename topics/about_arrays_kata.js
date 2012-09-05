@@ -59,6 +59,24 @@ test("splice: replace elements in an array", function() {
     deepEqual(array, ['a', 'b', 'c'], 'how to remove elements?');
 });
 
+test("join array elements to form a string", function() {
+    var array = ['a', 'b', 'c'];
+    var result = __;
+    equal(result, 'a,b,c', 'how to concatenate the elements?');
+});
+
+test("join array elements to form a string: a different separator", function() {
+    var array = ['a', 'b', 'c'];
+    var result = __;
+    equal(result, 'a b c', 'how to concatenate the elements?');
+});
+
+test("join array elements to form a string: elements that are not strings", function() {
+    var array = [1, 2, 3];
+    var result = __;
+    equal(result, '1,2,3', 'how to concatenate the elements?');
+});
+
 test("find an item from an array", function() {
     var array = ['a', 'b', 'c', 'a'];
     equals(__, 1, "find the index of letter 'b' in the array?");
@@ -188,9 +206,6 @@ test("strict equality", function() {
 // pop an item from the end of an array
 // insert an item at the beginning of an array
 // shift an item off the beginning of an array
-// join array elements to form a string
-// - default separator
-// - given separator
 // every item satisfies a predicate
 // parameters (array[i],i,array) of predicates: every, filter
 
