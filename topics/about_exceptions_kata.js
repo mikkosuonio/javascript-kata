@@ -123,15 +123,18 @@ test("exception causes call stack to be unwound", function() {
     var statements = [];
     function functionThrowingException() {
         throw {};
-        statements.push('statement 1');
+        statements.push(2);
     }
     try {
+        statements.push(1);
         functionThrowingException();
+        statements.push(3);
     }
     catch (e) {
+        statements.push(4);
     }
-    statements.push('statement 2');
-    deepEqual(statements, [], 'where does the execution go');
+    statements.push(5);
+    deepEqual(statements, __, 'how does the execution go');
 });
 
 test("catch multiple possible exceptions", function() {
@@ -145,6 +148,7 @@ test("catch multiple possible exceptions", function() {
         }
     }
     catch (e) {
+        exception = e;
         equal(exception, 'exception 1', 'was this exception caught?');
         equal(exception, 'exception 2', 'was this exception caught?');
     }
