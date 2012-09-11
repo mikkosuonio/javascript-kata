@@ -195,21 +195,18 @@ test("enumerate properties of an object", function() {
         name: 'Mikko',
         age: 38
     };
-    var keys = [];
-    // __
+    var keys = __;
     keys.sort();
     deepEqual(keys, ['age', 'name'], "how to obtain the property names?");
 });
 
 test("enumerate properties of an object: functions as properties", function() {
-    var person = {
+    var me = {
         sayHi: function() {
             return "Hi";
         }
     };
-    var keys = [];
-    // __
-    keys.sort();
+    var keys = __;
     deepEqual(keys, ['sayHi'], "how to obtain the property names?");
 });
 
