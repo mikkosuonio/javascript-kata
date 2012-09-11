@@ -201,6 +201,8 @@ test("strict equality", function() {
     equals([ object ] === [ object ], __, 'are the arrays the same?');
 });
 
+// sparse arrays
+// - map over
 // parameters (array[i],i,array) of functions for: forEach, map
 // push an item to the end of an array
 // pop an item from the end of an array
