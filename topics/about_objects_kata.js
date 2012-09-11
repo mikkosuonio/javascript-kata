@@ -2,27 +2,34 @@
 module("Objects kata (topics/about_objects_kata.js)");
 
 test("create an object literal", function() {
-    var person = __;
+    var person = {
+        name: "Mikko",
+        age: 38
+    };
     equals(person.name, "Mikko", "what is the person's name?");
     equals(person.age, 38, "what is the person's age?");
 });
 
 test("add properties to an existing object", function() {
     var person = {};
-    __;
+    person.name = "Mikko";
     equals(person.name, "Mikko", "what is the person's name?");
 });
 
 test("define a method in object literal", function() {
     var person = {
-        //__
+        sayHi: function() {
+            return 'Hi';
+        }
     };
     equals(person.sayHi(), "Hi", 'what should the sayHi method be?');
 });
 
 test("add a method to an existing object", function() {
     var person = {};
-    __;
+    person.sayHi = function() {
+        return 'Hi';
+    };
     equals(person.sayHi(), "Hi", 'what should the sayHi method be?');
 });
 
@@ -30,36 +37,38 @@ test("define a method referring to an object property", function() {
     var person = {
         name: "Mikko"
     };
-    // __
+    person.introduce = function() {
+        return 'My name is ' + this.name;
+    };
     equals(person.introduce(), "My name is Mikko", 'what should the introduce method be?');
 });
 
 test("object as an associative array / map / hash", function() {
     var person = {};
-    // __
+    person["Mikko's greeting"] = 'Hi';
     equals(person["Mikko's greeting"], "Hi", 'how to map key to value?');
 });
 
 test("equality", function() {
-    equals({} == {}, __, 'are the objects equal?');
-    equals({property: "value"} == {property: "value"}, __, 'are the objects equal?');
-    equals({property: "value"} == {property: "another"}, __, 'are the objects equal?');
-    equals({property1: "value"} == {property2: "value"}, __, 'are the objects equal?');
+    equals({} == {}, false, 'are the objects equal?');
+    equals({property: "value"} == {property: "value"}, false, 'are the objects equal?');
+    equals({property: "value"} == {property: "another"}, false, 'are the objects equal?');
+    equals({property1: "value"} == {property2: "value"}, false, 'are the objects equal?');
 
     var object1 = {property: "value"};
     var object2 = object1;
-    equals(object1 == object2, __, 'are the objects equal?');
+    equals(object1 == object2, true, 'are the objects equal?');
 });
 
 test("strict equality", function() {
-    equals({} === {}, __, 'are the objects the same?');
-    equals({property: "value"} === {property: "value"}, __, 'are the objects the same?');
-    equals({property: "value"} === {property: "another"}, __, 'are the objects the same?');
-    equals({property1: "value"} === {property2: "value"}, __, 'are the objects the same?');
+    equals({} === {}, false, 'are the objects the same?');
+    equals({property: "value"} === {property: "value"}, false, 'are the objects the same?');
+    equals({property: "value"} === {property: "another"}, false, 'are the objects the same?');
+    equals({property1: "value"} === {property2: "value"}, false, 'are the objects the same?');
 
     var object1 = {property: "value"};
     var object2 = object1;
-    equals(object1 === object2, __, 'are the objects the same?');
+    equals(object1 === object2, true, 'are the objects the same?');
 });
 
 test("object method calls another method", function() {
@@ -68,7 +77,7 @@ test("object method calls another method", function() {
             return "Hi";
         },
         greet: function() {
-            return __;
+            return this.greeting();
         }
     };
     equals(person.greet(), "Hi", 'how to call another method?');
@@ -79,7 +88,7 @@ test("object method uses a nested helper function", function() {
         name: "Mikko",
         greet: function() {
             function greeting() {
-                return __;
+                return person.name + "'s greeting";
             };
             return greeting();
         }
@@ -93,7 +102,9 @@ test("redefine a method in an object", function() {
             return "Hi";
         }
     };
-    // __
+    person.greet = function() {
+        return 'Moro';
+    };
     equals(person.greet(), "Moro", 'what should the new method be?');
 });
 
@@ -103,7 +114,10 @@ test("wrap an existing method with a new method which calls the old", function()
             return 'Hi';
         }
     };
-    person.sayHi = __;
+    var old = person.sayHi;
+    person.sayHi = function() {
+        return old.call(this) + ", and hi again";
+    };
     equals(person.sayHi(), "Hi, and hi again", 'what should the sayHi method be?');
 });
 
@@ -113,7 +127,7 @@ test("object inherits a method from another object", function() {
             return "Hi";
         }
     };
-    var me = __;
+    var me = Object.create(person);
     equals(me.greet(), "Hi", "how do I greet?");
     ok(me !== person, "we are not the same");
 });
@@ -125,7 +139,9 @@ test("object overrides an inherited method", function() {
         }
     };
     var me = Object.create(person);
-    // __
+    me.greet = function() {
+        return 'Moro';
+    };
     equals(person.greet(), "Hi", "how does a person greet?");
     equals(me.greet(), "Moro", "how do I greet now?");
 });
@@ -138,7 +154,9 @@ test("change a method in all heirs which have inherited an object", function() {
     };
     var me = Object.create(person);
     var myFriend = Object.create(person);
-    // __
+    person.greet = function() {
+        return 'Moro';
+    };
     equals(person.greet(), "Moro", "how does a person greet now?");
     equals(me.greet(), "Moro", "how do I greet now?");
     equals(myFriend.greet(), "Moro", "how does my friend greet now?");
@@ -151,7 +169,9 @@ test("object overrides an inherited method and calls the overridden method", fun
         }
     };
     var me = Object.create(person);
-    me.greet = __;
+    me.greet = function() {
+        return 'Moro, in other words, ' + person.greet();
+    };
     equals(person.greet(), "Hi", "how does a person greet?");
     equals(me.greet(), "Moro, in other words, Hi", "how do I greet now?");
 });
@@ -159,7 +179,7 @@ test("object overrides an inherited method and calls the overridden method", fun
 test("object's prototype attribute", function() {
     var person = {};
     var me = Object.create(person);
-    equals(__, person, "how to find out where does an object inherit from?");
+    equals(Object.getPrototypeOf(me), person, "how to find out where does an object inherit from?");
 });
 
 test("composition instead of inheritance", function() {
@@ -172,7 +192,7 @@ test("composition instead of inheritance", function() {
     var b = {
         base: a,
         method: function() {
-            // __
+            this.base.method.call(this.base);
         }
     };
     b.method();
@@ -181,12 +201,14 @@ test("composition instead of inheritance", function() {
 
 test("default conversion to string", function() {
     var person = {name: 'Mikko'};
-    equals(__, '[object Object]', "how to obtain the string presentation of an object?");
+    equals(person.toString(), '[object Object]', "how to obtain the string presentation of an object?");
 });
 
 test("define conversion to string for an object", function() {
     var person = {name: 'Mikko'};
-    // __
+    person.toString = function() {
+        return 'Person: ' + this.name;
+    };
     equals(person.toString(), 'Person: Mikko', "how to implement a method to convert an object to string?");
 });
 
@@ -195,7 +217,7 @@ test("enumerate properties of an object", function() {
         name: 'Mikko',
         age: 38
     };
-    var keys = __;
+    var keys = Object.keys(me);
     keys.sort();
     deepEqual(keys, ['age', 'name'], "how to obtain the property names?");
 });
@@ -206,7 +228,7 @@ test("enumerate properties of an object: functions as properties", function() {
             return "Hi";
         }
     };
-    var keys = __;
+    var keys = Object.keys(me);
     deepEqual(keys, ['sayHi'], "how to obtain the property names?");
 });
 
@@ -217,7 +239,8 @@ test("enumerate properties of an object: inherited properties", function() {
     var me = Object.create(person);
     me.name = 'Mikko';
     var keys = [];
-    // __
+    for (var key in me)
+        keys.push(key);
     keys.sort();
     deepEqual(keys, ['age', 'name'], "how to obtain the names of both own and inherited properties?");
 });
@@ -229,7 +252,11 @@ test("enumerate properties of an object: detect inherited properties", function(
     var me = Object.create(person);
     me.name = 'Mikko';
     var keys = [];
-    // __
+    for (var key in me)
+        if (me.hasOwnProperty(key))
+            keys.push(key);
+        else
+            keys.push('inherited:' + key);
     keys.sort();
     deepEqual(keys, ['inherited:age', 'name'], "how to separate own and inherited properties?");
 });
@@ -240,7 +267,7 @@ test("enumerate properties of an object: making a property nonenumerable", funct
             return "Hi";
         }
     };
-    // __
+    Object.defineProperty(person, 'sayHi', {enumerable: false});
     var keys = [];
     for (var key in person)
         keys.push(key);
@@ -255,7 +282,7 @@ test("get own properties (even nonenumerable) of an object", function() {
         enumerableOwnProperty: {value: true},
         nonEnumerableOwnProperty: {value: true, enumerable: false}
     });
-    var keys = __;
+    var keys = Object.getOwnPropertyNames(object);
     keys.sort();
     deepEqual(keys, ['enumerableOwnProperty', 'nonEnumerableOwnProperty'], "how to get a list of own property names?");
 });
