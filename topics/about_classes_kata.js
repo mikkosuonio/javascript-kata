@@ -2,23 +2,30 @@
 module("Classes kata (topics/about_classes_kata.js)");
 
 test("create a class", function() {
-    // __
-    var person = __;
+    function Person(name) {
+        this.name = name;
+    }
+    var person = new Person('Mikko');
     equals(person instanceof Person, true, "am I a Person?");
     equals(person.name, 'Mikko', "what is my name?");
 });
 
 test("create a class with a method", function() {
-    // __
-    var me = __;
-    var friend = __;
+    function Person(name) {
+        this.name = name;
+    }
+    Person.prototype.introduce = function() {
+        return 'My name is ' + this.name;
+    };
+    var me = new Person('Mikko');
+    var friend = new Person('Tommi');
     equals(me.introduce(), "My name is Mikko", "what is my name?");
     equals(friend.introduce(), "My name is Tommi", "what is my friend's name?");
 });
 
 test("call an instance method in constructor", function() {
     function Person(name) {
-        // __
+        this.setGreeting(name);
     }
     Person.prototype.setGreeting = function(name) {
         this.greeting = 'My name is ' + name;
@@ -31,7 +38,11 @@ test("create a class method: object construction using a factory method", functi
     function Person(name) {
         this.greeting = 'My name is ' + name;
     }
-    // __
+    Person.createFinn = function(name) {
+        var finn = new Person(name);
+        finn.greeting = 'Minun nimeni on ' + name;
+        return finn;
+    };
     var me = Person.createFinn('Mikko');
     equals(me.greeting, "Minun nimeni on Mikko", "what is my name?");
 });
@@ -41,13 +52,18 @@ test("add or override a method in all instances (even already instantiated) of a
         this.name = name;
     }
     var me = new Person('Mikko');
-    // __
+    Person.prototype.introduce = function() {
+        return 'My name is ' + this.name;
+    };
     equals(me.introduce(), "My name is Mikko", "what is my name?");
 });
 
 test("augment a standard class with a new method", function() {
     var string = 'My  name  is   Mikko';
-    // __
+    String.prototype.removeExtraWhiteSpace = function() {
+        return this.replace(/\s{2,}/g, ' ');
+    };
+    Object.defineProperty(String.prototype, 'removeExtraWhiteSpace', {enumerable: false});
     equals(string.removeExtraWhiteSpace(), "My name is Mikko", "how to add a method to string class?");
     equals(stringsDoNotHaveAdditionalEnumerableProperties(), true, "how to make the method nonenumerable?");
     function stringsDoNotHaveAdditionalEnumerableProperties() {
@@ -62,7 +78,9 @@ test("define conversion to string for a class", function() {
     function Person(name) {
         this.name = name;
     }
-    // __
+    Person.prototype.toString = function() {
+        return 'Person: ' + this.name;
+    };
     var me = new Person('Mikko');
     var myFriend = new Person('Tommi');
     equals(me.toString(), 'Person: Mikko', "how to implement a method to convert objects of a class to string?");
@@ -72,19 +90,20 @@ test("define conversion to string for a class", function() {
 test("convention for storing the constructor function", function() {
     function Person() {}
     var me = new Person();
-    equals(__, Person, "how to find the constructor function of an object created using new?");
+    equals(me.constructor, Person, "how to find the constructor function of an object created using new?");
 });
 
 test("convention for storing the prototype object of a class", function() {
     function Person() {}
     var me = new Person();
-    equals(__, Object.getPrototypeOf(me), "how to find the prototype of an object created using new with constructor function?");
+    equals(me.constructor.prototype, Object.getPrototypeOf(me), "how to find the prototype of an object created using new with constructor function?");
 });
 
 test("subclasses", function() {
     function Base() {}
     function Derived() {}
-    // __
+    Derived.prototype = Object.create(Base.prototype);
+    Derived.prototype.constructor = Derived;
     var d = new Derived();
     equals(d instanceof Base, true, "is it an instance of Base?");
     equals(d.constructor, Derived, "is the constructor still clear?");
@@ -95,7 +114,7 @@ test("subclasses: constructor chaining", function() {
         this.property = true;
     }
     function Derived() {
-        // __
+        Base.call(this);
     }
     Derived.prototype = Object.create(Base.prototype);
     Derived.prototype.constructor = Derived;
@@ -114,7 +133,7 @@ test("subclasses: use composition instead", function() {
         this.base = base;
     }
     Derived.prototype.method = function() {
-        // __
+        this.base.method.call(this.base);
     };
     var b = new Base();
     var d = new Derived(b);
@@ -126,7 +145,9 @@ test("add a method allowing comparison of objects of the class: equality", funct
     function Person(name) {
         this.name = name;
     }
-    // __
+    Person.prototype.equals = function(that) {
+        return (that instanceof Person) && (this.name === that.name);
+    };
     var me = new Person('Mikko');
     var anotherMe = new Person('Mikko');
     var friend = new Person('Tommi');
@@ -148,14 +169,23 @@ test("add a method allowing comparison of objects of the class: compareTo", func
     function Person(name) {
         this.name = name;
     }
-    // __
+    Person.prototype.compareTo = function(that) {
+        if (this.name < that.name)
+            return -1;
+        else if (this.name === that.name)
+            return 0;
+        else
+            return 1;
+    };
     var me = new Person('Mikko');
     var friend = new Person('Tommi');
     equals(me.compareTo(me) === 0, true, "am I equal to myself?");
     equals(me.compareTo(friend) < 0, true, "do I come before my friend in the alphabetic order?");
     equals(friend.compareTo(me) > 0, true, "does my friend come after me in the alphabetic order?");
     
-    // __
+    Person.byName = function(a,b) {
+        return a.compareTo(b);
+    };
     deepEqual([friend, me].sort(Person.byName), [me, friend], 'how to sort us alphabetically?');
 });
 
