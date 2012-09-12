@@ -57,6 +57,18 @@ test("switch: default case", function() {
     strictEqual(convert(4), 'other');
 });
 
+test("switch: fall-through", function() {
+    var convert = function(num) {
+        var result;
+        // __
+        return result;
+    };
+    strictEqual(convert(1), 'red');
+    strictEqual(convert(2), 'other');
+    strictEqual(convert(3), 'other');
+    strictEqual(convert(4), undefined);
+});
+
 var red = {};
 var green = {};
 var blue = {};
