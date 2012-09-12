@@ -45,6 +45,18 @@ test("switch", function() {
     strictEqual(convert(3), 'blue');
 });
 
+test("switch: default case", function() {
+    var convert = function(num) {
+        var result;
+        // __
+        return result;
+    };
+    strictEqual(convert(1), 'red');
+    strictEqual(convert(2), 'green');
+    strictEqual(convert(3), 'blue');
+    strictEqual(convert(4), 'other');
+});
+
 var red = {};
 var green = {};
 var blue = {};
