@@ -49,7 +49,7 @@ test("augment a standard class with a new method", function() {
     var string = 'My  name  is   Mikko';
     // __
     equals(string.removeExtraWhiteSpace(), "My name is Mikko", "how to add a method to string class?");
-    equals(stringsDoNotHaveExtraEnumerableProperties(), true, "how to make the method nonenumerable?");
+    equals(stringsDoNotHaveAdditionalEnumerableProperties(), true, "how to make the method nonenumerable?");
     function stringsDoNotHaveAdditionalEnumerableProperties() {
         var key, keys = [];
         for (key in "")
