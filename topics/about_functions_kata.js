@@ -3,26 +3,36 @@ module("About Functions kata (topics/about_functions_kata.js)");
 
 test("define a function", function() {
     var returnValue = 1;
-    // __
+    function definedFunction() {
+        return returnValue;
+    }
     equals(definedFunction(), returnValue, 'how to define a function?');
 });
 
 test("define a function with parameters", function() {
-    // __
+    function functionWithParameter(x) {
+        return 2*x;
+    }
     equals(functionWithParameter(1), 2*1, 'how to define a function with a parameter?');
     equals(functionWithParameter(2), 2*2, 'how to define a function with a parameter?');
 });
 
 test("define a function with an optional parameter", function() {
     var value = 1;
-    var functionWithOptionalParameter = __;
+    var functionWithOptionalParameter = function(x,m) {
+        return (m || 2) * x;
+    };
     equals(functionWithOptionalParameter(value), 2*value, 'how to define a function with an optional parameter?');
     equals(functionWithOptionalParameter(value, 3), 3*value, 'how to define a function with an optional parameter?');
 });
 
 test("return a function", function() {
     var returnValue = 1;
-    // __
+    function myFunction() {
+        return function() {
+            return returnValue;
+        };
+    }
     var returnedFunction = myFunction();
     equals(returnedFunction(), returnValue, 'how to define a function returning a function?');		
 });
@@ -32,7 +42,9 @@ test("pass a function as an argument", function() {
     var argumentFunction = function (x) {
         return x*x;
     };
-    var functionWithFunctionAsParameter = __;
+    var functionWithFunctionAsParameter = function(f,x) {
+        return f(x);
+    };
     equals(functionWithFunctionAsParameter(argumentFunction, 2), 4, 'how to define a function with a function as a parameter?');		
 });
 
@@ -42,7 +54,7 @@ test("parameter with a primitive type is passed by value", function() {
         x = 2;
     };
     functionWithParameter(i);
-    equals(i, __, 'has the variable been modified?');
+    equals(i, 1, 'has the variable been modified?');
 });
 
 test("argument with a primitive type initializes a parameter of the same type", function() {
@@ -52,7 +64,7 @@ test("argument with a primitive type initializes a parameter of the same type", 
     };
     var typeInside = functionWithParameter(i);
     equals(typeof i, 'number', 'what is the type of the value outside the function?');
-    equals(typeInside, __, 'what is the type of the value inside the function?');
+    equals(typeInside, 'number', 'what is the type of the value inside the function?');
 });
 
 test("function object parameters are passed by reference", function() {
@@ -61,14 +73,14 @@ test("function object parameters are passed by reference", function() {
         x.property = true;
     };
     functionWithParameter(object);
-    equals(object.property, __, 'has the object been modified?');
+    equals(object.property, true, 'has the object been modified?');
 });
 
 test("function with variable number of arguments", function() {
     var product = function(/* ... */) {
         var result = 1;
-        for (var i = 0; i < __; i++)
-            result *= __;
+        for (var i = 0; i < arguments.length; i++)
+            result *= arguments[i];
         return result;
     };
     equals(product(1), 1, 'how to define a function with varying number of parameters?');
@@ -81,7 +93,7 @@ test("invocation: call a function as a method of an object", function() {
     var functionChangingTheProperty = function() {
         this.property = true;
     };
-    // __
+    functionChangingTheProperty.call(object);
     equals(object.property, true, 'how to call the function as a method?');
 });
 
@@ -90,7 +102,7 @@ test("invocation: bind a function to an object", function() {
     var functionChangingTheProperty = function() {
         this.property = true;
     };
-    var functionChangingTheObject = __;
+    var functionChangingTheObject = functionChangingTheProperty.bind(object);
     functionChangingTheObject();
     equals(object.property, true, 'how to bound the function to the object?');
 });
@@ -105,7 +117,7 @@ test("invocation: apply a function with varying/unknown number of parameters", f
     };
     var applyTheFunction = function(f /* ... */) {
         var argumentsForF = [].slice.call(arguments, 1);
-        return __;
+        return f.apply(null, argumentsForF);
     };
     equals(applyTheFunction(function1, 1), 1, 'result for a function with one parameter');
     equals(applyTheFunction(function2, 2, 3), 6, 'result for a function with two parameters');
@@ -113,7 +125,7 @@ test("invocation: apply a function with varying/unknown number of parameters", f
 
 test("arguments object: use as an array", function() {
     var joinTheParameters = function(/* ... */) {
-        return __;
+        return [].join.call(arguments);
     };
     equals(joinTheParameters(1), "1", 'how to call an array method on arguments?');
     equals(joinTheParameters(1, 2), "1,2", 'how to call an array method on arguments?');
@@ -127,7 +139,7 @@ test("functions are hoisted to the top of the enclosing function / script", func
         return "can call!";
     };
     var result = callFunctionNotYetDeclared();
-    equals(result === "can call!", __, 'can it call the function?');
+    equals(result === "can call!", true, 'can it call the function?');
 });
 
 test("closure: function evaluated in the same (lexical) scope as where it was defined", function() {
@@ -137,8 +149,8 @@ test("closure: function evaluated in the same (lexical) scope as where it was de
         function f() {return i;}
         return f();
     };
-    equals(getValue(), __, 'what value does the function evaluate to?');
-    equals(i, __, 'what is the value of the variable?');
+    equals(getValue(), 2, 'what value does the function evaluate to?');
+    equals(i, 1, 'what is the value of the variable?');
 });
 
 test("closure: function evaluated in a different scope than where it was defined", function() {
@@ -150,8 +162,8 @@ test("closure: function evaluated in a different scope than where it was defined
     };
     var f = getFunction();
     var value = f();
-    equals(value, __, 'what value does the function evaluate to?');
-    equals(i, __, 'what is the value of the variable?');
+    equals(value, 2, 'what value does the function evaluate to?');
+    equals(i, 1, 'what is the value of the variable?');
 });
 
 test("closure: the scope chain associated with the closure is live", function() {
@@ -159,8 +171,8 @@ test("closure: the scope chain associated with the closure is live", function() 
     function f1() {return i;}
     i = 2;
     function f2() {return i;}
-    equals(f1(), __, 'what is the return value of the function?');
-    equals(f2(), __, 'what is the return value of the function?');
+    equals(f1(), 2, 'what is the return value of the function?');
+    equals(f2(), 2, 'what is the return value of the function?');
 });
 
 test("closure: ... changing to the next level in the scope chain does not help", function() {
@@ -171,8 +183,8 @@ test("closure: ... changing to the next level in the scope chain does not help",
     var f1 = createFunction();
     i = 2;
     var f2 = createFunction();
-    equals(f1(), __, 'what is the return value of the function?');
-    equals(f2(), __, 'what is the return value of the function?');
+    equals(f1(), 2, 'what is the return value of the function?');
+    equals(f2(), 2, 'what is the return value of the function?');
 });
 
 test("closure: ... but we can make a static copy by passing it (by value) as an argument of a function", function() {
@@ -183,8 +195,8 @@ test("closure: ... but we can make a static copy by passing it (by value) as an 
     var f1 = createFunctionWithStaticCopyOf(i);
     i = 2;
     var f2 = createFunctionWithStaticCopyOf(i);
-    equals(f1(), __, 'what is the return value of the function?');
-    equals(f2(), __, 'what is the return value of the function?');
+    equals(f1(), 1, 'what is the return value of the function?');
+    equals(f2(), 2, 'what is the return value of the function?');
 });
 
 test("closure: ... or by storing it to a variable", function() {
@@ -196,8 +208,8 @@ test("closure: ... or by storing it to a variable", function() {
     var f1 = createFunction();
     i = 2;
     var f2 = createFunction();
-    equals(f1(), __, 'what is the return value of the function?');
-    equals(f2(), __, 'what is the return value of the function?');
+    equals(f1(), 1, 'what is the return value of the function?');
+    equals(f2(), 2, 'what is the return value of the function?');
 });
 
 test("closure: ... however: objects are passed by reference and the closure always refers to the latest state of the object", function() {
@@ -209,11 +221,13 @@ test("closure: ... however: objects are passed by reference and the closure alwa
     var f1 = createFunction();
     iInObject['i'] = 2;
     var f2 = createFunction();
-    equals(f1(), __, 'what is the return value of the function?');
-    equals(f2(), __, 'what is the return value of the function?');
+    equals(f1(), 2, 'what is the return value of the function?');
+    equals(f2(), 2, 'what is the return value of the function?');
 });
 
-var temporary = 1;
+(function namespace() {
+    var temporary = 1;
+}());
 test("functions as a temporary namespace", function () {
     equals(typeof(temporary), "undefined", 'how to avoid temporary variables polluting the global namespace?');
 });
@@ -222,7 +236,7 @@ test("partial application: using the bind() method", function() {
     function add(x, y) {
         return x + y;
     }
-    var inc = __;
+    var inc = add.bind(null, 1);
     equals(inc(1), 2, 'how to call add() with the first argument bound to a fixed value?');
     equals(inc(2), 3, 'how to call add() with the first argument bound to a fixed value?');
 });
@@ -235,7 +249,7 @@ test("function expression stored in a variable can be used after initialization!
         return "can call!";
     };
     var result = callFunctionAlreadyInitializedWhenThisIsCalled();
-    equals(result === "can call!", __, 'can it call the function?');
+    equals(result === "can call!", true, 'can it call the function?');
 });
 
 test("function expression stored in a variable cannot be used before initialization!", function () {
@@ -251,7 +265,7 @@ test("function expression stored in a variable cannot be used before initializat
     var callThis = function() {
         return "can call!";
     };
-    equals(result === "can call!", __, 'can it call the function?');
+    equals(result === "can call!", false, 'can it call the function?');
 });
 
 test("function expression stored in a variable is not defined before initialization!", function () {
@@ -261,7 +275,7 @@ test("function expression stored in a variable is not defined before initializat
     }
     catch (exception) {
     }
-    equals(callThis, __, 'what is the value of callThis');
+    equals(callThis, undefined, 'what is the value of callThis');
     var callThis = function() {
         return "can call!";
     };
